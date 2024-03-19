@@ -17,4 +17,13 @@ public class MeleeWeapon extends Weapon {
     public boolean canUse() {
         return true;
     }
+
+    @Override
+    int getAmmoLeft() {
+        return 0;
+    }
+
+    public void useWeapon () {
+        getDamageDoneToOpponentPerStrike();
+    }
 }

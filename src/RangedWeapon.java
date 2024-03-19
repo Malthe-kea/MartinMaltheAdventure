@@ -1,27 +1,34 @@
 public class RangedWeapon extends Weapon {
 
     //ATTRIBUTES
-    private int remainingUses;
+    protected int ammo;
 
 
     //KONSTRUKTØR
-    public RangedWeapon(String shortname, String longName, int remainingUses, int damageDoneToOpponentPerStrike) {
+    public RangedWeapon(String shortname, String longName,int damageDoneToOpponentPerStrike, int ammo) {
         super(shortname, longName, damageDoneToOpponentPerStrike);
-        this.remainingUses = remainingUses;
+        this.ammo = ammo;
     }
 
 
-    public void setRemainingUses(int remainingUses) {
-        this.remainingUses = remainingUses;
+
+    @Override
+    public int getAmmoLeft() {
+        return ammo--;
     }
 
     //Metode der siger at hvis der er flere "skud" end 0 i et våben kan vi bruge det
     @Override
     public boolean canUse() {
-        if (remainingUses > 0) {
+        if (getAmmoLeft() > 0) {
             return true;
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void useWeapon() {
+        getDamageDoneToOpponentPerStrike();
     }
 }

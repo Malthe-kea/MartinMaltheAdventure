@@ -8,6 +8,7 @@ public class Player {
     private int playerHealth = 0;
     private Weapon currentWeapon;
     private Weapon weapon;
+    private AdventureController controller;
 
 
     //CONSTRUCTOR
@@ -59,18 +60,38 @@ public class Player {
     }
 
 
-    public void equipWeapon(String shortName){
+    public void equipWeapon(String shortName) {
         Item equippedWeapon = findItemFromInventory(shortName);
-        if (equippedWeapon == null){
+        if (equippedWeapon == null) {
             System.out.println("no weapon found with the name :" + equippedWeapon);
-        }else if(equippedWeapon instanceof Weapon){
-            currentWeapon = (Weapon)equippedWeapon;
+        } else if (equippedWeapon instanceof Weapon) {
+            currentWeapon = (Weapon) equippedWeapon;
             getCurrentRoom().removeItem(equippedWeapon);
             inventory.remove(equippedWeapon);
             System.out.println("You have equipped " + equippedWeapon);
-        }else {
+        } else {
             System.out.println("you cant equip " + " as a weapon");
         }
+    }
+
+    public void attack() {
+        Weapon equippedWeapon = getEquippedWeapon();
+        if (equippedWeapon == null) {
+            System.out.println("You don't have a weapon equipped.");
+        } else if (!equippedWeapon.getShortName().equalsIgnoreCase(equippedWeapon.getShortName())) {
+            System.out.println("You don't a " + equippedWeapon + "in your inventory.");
+        } else if (equippedWeapon instanceof RangedWeapon) {
+            equippedWeapon.useWeapon();
+            System.out.println("You attackedwith " + equippedWeapon.getShortName() + ".");
+        } else if (equippedWeapon.getAmmoLeft() == 0) {
+            System.out.println("You are out of ammo");
+        } else if (equippedWeapon instanceof MeleeWeapon) {
+            equippedWeapon.useWeapon();
+            System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+
+
+        }
+
     }
 
     public void takeItemAndAddToInventory(String itemName) {
@@ -139,6 +160,14 @@ public class Player {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    public void setCurrentWeapon(Weapon currentWeapon) {
+        this.currentWeapon = currentWeapon;
+    }
+
+    public Weapon getEquippedWeapon() {
+        return currentWeapon;
     }
 
     public String look() {

@@ -35,13 +35,13 @@ public class AdventureController {
         return gamePlayer.look();
     }
 
-    //Weapon methods for use in subclasses
-    public void attack() {
-        getGamePlayer().getCurrentWeapon().getDamageDoneToOpponentPerStrike();
-        if (getGamePlayer().getCurrentWeapon() instanceof RangedWeapon) {
-            ((RangedWeapon) getGamePlayer().getCurrentWeapon()).setRemainingUses(getGamePlayer().getCurrentWeapon().getAmmo() - 1);
-        } else {
-            System.out.println("You dont have a weapon");
-        }
-    }
+    //Weapon methods for use in subclasses -
+//    public void attack() {
+//        getGamePlayer().getCurrentWeapon().getDamageDoneToOpponentPerStrike();
+//        if (getGamePlayer().getCurrentWeapon() instanceof RangedWeapon) {
+//            ((RangedWeapon) getGamePlayer().getCurrentWeapon()).setRemainingUses(getGamePlayer().getCurrentWeapon().getAmmo() - 1);
+//        } else {
+//            System.out.println("You dont have a weapon");
+//        }
+//    }
 }
