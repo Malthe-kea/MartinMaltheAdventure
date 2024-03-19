@@ -4,7 +4,7 @@ public class Player {
 
     //Attributes
     private Room currentRoom;
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private ArrayList<Item> inventory;
     private int playerHealth = 0;
     private Weapon currentWeapon;
     private Weapon weapon;
@@ -35,12 +35,13 @@ public class Player {
 
     public void setPlayerHealth(int changeInHealth) {
         playerHealth += changeInHealth;
-        if(playerHealth <= 0) { // health range er sat fra 0-100
+        if (playerHealth <= 0) { // health range er sat fra 0-100
             playerDied();
-        } else if (playerHealth > 100){
+        } else if (playerHealth > 100) {
             playerHealth = 100;
         }
     }
+
     public void eatFoodOrItem(String shortName) {
         Item item = findItemFromInventoryOrCurrentRoom(shortName);
         if (item == null) {
@@ -48,7 +49,7 @@ public class Player {
         } else if (item instanceof Food food) {
             removeItem(item);
             setPlayerHealth(food.getHealthPoints());
-            if (playerHealth == 100){
+            if (playerHealth == 100) {
                 System.out.println("You consumed " + item);
                 System.out.println("You're at full HP");
             } else {
@@ -56,36 +57,21 @@ public class Player {
             }
         } else System.out.println(item + " is not edible");
     }
+
+
     public void equipWeapon(String shortName){
         Item equippedWeapon = findItemFromInventory(shortName);
-
-        // if (equippedWeapon.getShortName().equalsIgnoreCase(shortName)) { // der bliver kun vist items shortName
-        if (equippedWeapon instanceof Weapon) { // det her er hvis item har et instance af weapon og equiooedweapon er et weapon item
-            equippedWeapon = currentWeapon;
-            System.out.println("You have equipped " + shortName + ".");
-
-        } else {
-            System.out.println(shortName + " is not a weapon!");
+        if (equippedWeapon == null){
+            System.out.println("no weapon found with the name :" + equippedWeapon);
+        }else if(equippedWeapon instanceof Weapon){
+            currentWeapon = (Weapon)equippedWeapon;
+            getCurrentRoom().removeItem(equippedWeapon);
+            inventory.remove(equippedWeapon);
+            System.out.println("You have equipped " + equippedWeapon);
+        }else {
+            System.out.println("you cant equip " + " as a weapon");
         }
-
-        System.out.println("You don't have " + shortName + " in your inventory.");
     }
-    // weapon = weapon;
-    // if (equippedWeapon == null){
-    //  System.out.println("you have nothing to equip");
-    //} else if (findItemFromInventory()!= Weapon) {
-    //   System.out.println(" The item you equiped is not a wepon");
-
-    //  }
-
-    // else if(equippedWeapon instanceof Weapon){
-    // currentWeapon = (Weapon)equippedWeapon;
-    //getCurrentRoom().removeItem(equippedWeapon);
-    //  inventory.remove(equippedWeapon);
-    //  System.out.println("you equipped " + equippedWeapon);
-    // }else {
-    //     System.out.println("you cant equip this item");
-//}
 
     public void takeItemAndAddToInventory(String itemName) {
         Item item = currentRoom.searchForItemsInCurrentRoom(itemName);
@@ -111,9 +97,10 @@ public class Player {
         }
         return null;
     }
-    public Item findItemFromInventory(String shortName){
-        for (Item i : inventory){
-            if (i.getShortName().equals(shortName)){
+
+    public Item findItemFromInventory(String shortName) {
+        for (Item i : inventory) {
+            if (i.getShortName().equals(shortName)) {
                 return i;
             }
         }
@@ -165,8 +152,8 @@ public class Player {
     }
 
     //Overført fra "Adventure del 2 review" PDF slide 15
-    public boolean move(String direction){
-        Room desiredRoom = switch (direction){
+    public boolean move(String direction) {
+        Room desiredRoom = switch (direction) {
             case "north" -> currentRoom.getNorth();
             case "south" -> currentRoom.getSouth();
             case "east" -> currentRoom.getEast();
@@ -174,11 +161,10 @@ public class Player {
             default -> null;
         };
 
-        if(desiredRoom != null){
+        if (desiredRoom != null) {
             currentRoom = desiredRoom;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
