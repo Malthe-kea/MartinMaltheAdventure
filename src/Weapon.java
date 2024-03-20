@@ -1,17 +1,17 @@
 public abstract class Weapon extends Item {
     //Attributes
-    private int damageDoneToOpponentPerStrike;
+    private int damagePerStrike;
 
 
     //Constructor
-    public Weapon(String shortName, String longName, int damageDoneToOpponentPerStrike) {
+    public Weapon(String shortName, String longName, int damagePerStrike) {
         super(shortName, longName); //calls item constructor
-        this.damageDoneToOpponentPerStrike = damageDoneToOpponentPerStrike;
+        this.damagePerStrike = damagePerStrike;
     }
 
     //Getter
-    public int getDamageDoneToOpponentPerStrike() {
-        return damageDoneToOpponentPerStrike;
+    public int getDamagePerStrike() {
+        return damagePerStrike;
     }
 
 

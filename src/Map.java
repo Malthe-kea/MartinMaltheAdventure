@@ -7,7 +7,6 @@ public class Map {
         createMap();
     }
 
-
     //Methods
     public void createMap() {
         Room room1 = new Room("Dragekammeret", "Lysende lavastrømme gløder om æggene under himlen af skæl og flamme, mens drager hviler i dvale.");
