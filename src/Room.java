@@ -19,6 +19,7 @@ public class Room {
         itemList.add(item);
     }
 
+
     public Item lookForItemsInCurrentRoom(String shortName) {
         for (Item i : itemList) {
             if (i.getShortName().equals(shortName)) {

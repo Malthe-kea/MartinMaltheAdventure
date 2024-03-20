@@ -9,9 +9,9 @@ public class MeleeWeapon extends Weapon {
     }
 
     //GETTER METODE
-    public int getDamagePerStrike(){
-        return damageDoneToOpponentPerStrike;}
-
+    public int getDamageDoneToOpponentPerStrike(){
+        return damageDoneToOpponentPerStrike;
+    }
 
     @Override
     public boolean canUse() {
@@ -24,6 +24,6 @@ public class MeleeWeapon extends Weapon {
     }
 
     public void useWeapon () {
-        getDamagePerStrike();
+        getDamageDoneToOpponentPerStrike();
     }
 }
