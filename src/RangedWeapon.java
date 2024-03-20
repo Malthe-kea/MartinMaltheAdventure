@@ -29,6 +29,6 @@ public class RangedWeapon extends Weapon {
 
     @Override
     public void useWeapon() {
-        getDamageDoneToOpponentPerStrike();
+        getDamagePerStrike();
     }
 }

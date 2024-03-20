@@ -77,19 +77,19 @@ public class Player {
     public void attack() {
         Weapon equippedWeapon = getEquippedWeapon();
         if (equippedWeapon == null) {
-            System.out.println("You don't have a weapon equipped.");
-        } else if (!equippedWeapon.getShortName().equalsIgnoreCase(equippedWeapon.getShortName())) {
-            System.out.println("You don't a " + equippedWeapon + "in your inventory.");
+            System.out.println("You don't have a weapon equipped. You can chose from the following items " + getInventory() );
+//        } else if (!equippedWeapon.getShortName().equalsIgnoreCase(equippedWeapon.getShortName())) {
+//            System.out.println("You don't a " + equippedWeapon + "in your inventory.");
+        } else if (equippedWeapon instanceof MeleeWeapon) {
+            equippedWeapon.useWeapon();
+            System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
         } else if (equippedWeapon.getAmmoLeft() == 0) {
             System.out.println("You are out of ammo");
         } else if (equippedWeapon instanceof RangedWeapon) {
             equippedWeapon.useWeapon();
             System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-        } else if (equippedWeapon instanceof MeleeWeapon) {
-            equippedWeapon.useWeapon();
-            System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+            System.out.println("You have "+ equippedWeapon.getAmmoLeft() + " ammo left");
         }
-
     }
 
     public void takeItemAndAddToInventory(String itemName) {
