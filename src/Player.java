@@ -21,7 +21,7 @@ public class Player {
 
     public void playerDied() {
         if (playerHealth <= 0) {
-            System.out.println("you died");
+            System.out.println("You died - GAME OVER!");
             System.exit(0);
         }
     }
