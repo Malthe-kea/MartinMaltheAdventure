@@ -106,7 +106,23 @@ public class Player {
             enemyDied();
             System.out.println("you have defeated " + enemyToAttack);
         } else {
-            System.out.println("The enemy now has " + enemyNewHealthValue);
+            System.out.println("The enemy now has " + enemyNewHealthValue + " HP left.");
+            playerHealth = enemyAttackPlayer();
+            if (playerHealth <= 0) {
+                playerDied();
+            }
+        }
+    }
+    public void rangedWeaponAttackSeqeuence() {
+        Weapon equippedWeapon = getEquippedWeapon();
+        int enemyNewHealthValue = (enemyToAttack.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
+        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+        enemyToAttack.setHealthPoints(enemyNewHealthValue);
+        if (enemyNewHealthValue <= 0) {
+            enemyDied();
+            System.out.println("you have defeated " + enemyToAttack);
+        } else {
+            System.out.println("The enemy now has " + enemyNewHealthValue + " HP left.");
             System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
             playerHealth = enemyAttackPlayer();
             if (playerHealth <= 0) {
@@ -135,26 +151,6 @@ public class Player {
         currentRoom.deleteEnemyFromCurrentRoom(enemy);
 
     }
-
-    public void rangedWeaponAttackSeqeuence() {
-        Weapon equippedWeapon = getEquippedWeapon();
-        int enemyNewHealthValue = (enemyToAttack.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
-        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-        enemyToAttack.setHealthPoints(enemyNewHealthValue);
-        if (enemyNewHealthValue <= 0) {
-            enemyDied();
-            System.out.println("you have defeated " + enemyToAttack);
-        } else {
-            System.out.println("The enemy now has " + enemyNewHealthValue);
-            System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
-            playerHealth = enemyAttackPlayer();
-            if (playerHealth <= 0) {
-                playerDied();
-            }
-        }
-    }
-
-
     public void takeItemAndAddToInventory(String itemName) {
         Item item = currentRoom.searchForItemsInCurrentRoom(itemName);
         if (item != null) {
