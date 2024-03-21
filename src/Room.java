@@ -6,6 +6,7 @@ public class Room {
     private String roomDescription;
     private Room north, east, west, south;
     private ArrayList<Item> itemList = new ArrayList<>();
+    private ArrayList<Enemy> enemiesInRoom = new ArrayList<>();
 
 
     //Constructor
@@ -18,6 +19,10 @@ public class Room {
     public void addItemToCurrentRoom(Item item) {
         itemList.add(item);
     }
+    public void addEnemyToCurrentRoom(Enemy enemy) {
+        enemiesInRoom.add(enemy);
+    }
+
 
 
     public Item lookForItemsInCurrentRoom(String shortName) {
@@ -47,8 +52,11 @@ public class Room {
         itemList.remove(item);
     }
 
-    public ArrayList<Item> itemsInCurrentRoom() {
+    public ArrayList<Item> getItemsInCurrentRoom() {
         return itemList;
+    }
+    public ArrayList<Enemy> getEnemiesInRoom(){
+        return enemiesInRoom;
     }
 
 

@@ -44,7 +44,8 @@ public class UserInterface {
                 controller.getGamePlayer().eatFoodOrItem(commandParameter);
             }
             case "attack", "a" -> {
-                controller.getGamePlayer().attack();
+                String enemyToAttack = commandParameter;
+                controller.getGamePlayer().attack(enemyToAttack);
             }
             case "equip" -> {
                 controller.getGamePlayer().equipWeapon(commandParameter);
@@ -113,6 +114,7 @@ public class UserInterface {
         System.out.println("Write 'Go east' to go east");
         System.out.println("Write 'Look' to go look around you");
         System.out.println("Write 'Help' to ask for help");
+        System.out.println("Write attack and then monster, to attack a monster");
     }
 
     public void userHelp() {

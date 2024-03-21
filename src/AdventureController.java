@@ -35,6 +35,7 @@ public class AdventureController {
         return gamePlayer.look();
     }
 
+
     //Weapon methods for use in subclasses -
 //    public void attack() {
 //        getGamePlayer().getCurrentWeapon().getDamageDoneToOpponentPerStrike();

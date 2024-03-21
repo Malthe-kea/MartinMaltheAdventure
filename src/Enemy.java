@@ -2,6 +2,7 @@ public class Enemy extends Item {
 
     //Attributer
     private int healthPoints;
+    private String name;
 
 // Indhent et meleeWeapon fra klassen
 
@@ -9,5 +10,7 @@ public class Enemy extends Item {
         super(shortName, longName);
         this.healthPoints = healthPoints;
     }
-
+public String getName () {
+        return shortName;
+}
 }

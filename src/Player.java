@@ -9,6 +9,8 @@ public class Player {
     private Weapon currentWeapon;
     private Weapon weapon;
     private AdventureController controller;
+    private ArrayList enemyInRoom;
+    private Enemy enemy;
 
 
     //CONSTRUCTOR
@@ -74,21 +76,30 @@ public class Player {
         }
     }
 
-    public void attack() {
-        Weapon equippedWeapon = getEquippedWeapon();
-        if (equippedWeapon == null) {
-            System.out.println("You don't have a weapon equipped. You can chose from the following items " + getInventory() );
-//        } else if (!equippedWeapon.getShortName().equalsIgnoreCase(equippedWeapon.getShortName())) {
-//            System.out.println("You don't a " + equippedWeapon + "in your inventory.");
-        } else if (equippedWeapon instanceof MeleeWeapon) {
-            equippedWeapon.useWeapon();
-            System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-        } else if (equippedWeapon.getAmmoLeft() == 0) {
-            System.out.println("You are out of ammo");
-        } else if (equippedWeapon instanceof RangedWeapon) {
-            equippedWeapon.useWeapon();
-            System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-            System.out.println("You have "+ equippedWeapon.getAmmoLeft() + " ammo left");
+    public void attack(String enemyShortName) {
+        String enemyToAttack = enemyShortName;
+
+        ArrayList<Enemy> enemyInRoom  = currentRoom.getEnemiesInRoom();
+        if ( enemyInRoom.isEmpty()) {
+            System.out.println("no enemies in this room to fight");
+        } else {
+            for (Enemy e : enemyInRoom) {
+                if (enemy.getName().equalsIgnoreCase(enemy.shortName)) {
+                    Weapon equippedWeapon = controller.getGamePlayer().getEquippedWeapon();
+                    if (equippedWeapon == null) {
+                        System.out.println("You don't have a weapon equipped. You can chose from the following items " + getInventory());
+                    } else if (equippedWeapon instanceof MeleeWeapon) {
+                        equippedWeapon.useWeapon();
+                        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+                    } else if (equippedWeapon.getAmmoLeft() == 0) {
+                        System.out.println("You are out of ammo");
+                    } else if (equippedWeapon instanceof RangedWeapon) {
+                        equippedWeapon.useWeapon();
+                        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+                        System.out.println("You have " + equippedWeapon.getAmmoLeft() + " ammo left");
+                    }
+                }
+            }
         }
     }
 
@@ -109,7 +120,7 @@ public class Player {
                 return i;
             }
         }
-        for (Item i : currentRoom.itemsInCurrentRoom()) {
+        for (Item i : currentRoom.getItemsInCurrentRoom()) {
             if (i.getShortName().equals(shortName)) {
                 return i;
             }
@@ -174,7 +185,7 @@ public class Player {
         roomInfo.append("\n").append(currentRoom.getRoomDescription());
         roomInfo.append("\n");
         roomInfo.append("You find the following items in the room: ");
-        roomInfo.append("\n").append(currentRoom.itemsInCurrentRoom());
+        roomInfo.append("\n").append(currentRoom.getItemsInCurrentRoom());
         return roomInfo.toString();
     }
 
