@@ -24,17 +24,6 @@ public class Room {
     }
 
 
-
-    public Item lookForItemsInCurrentRoom(String shortName) {
-        for (Item i : itemList) {
-            if (i.getShortName().equals(shortName)) {
-                return i;
-            }
-        }
-        return null;
-    }
-
-
     public void deleteEnemyFromCurrentRoom(Enemy shortName) {
         enemiesInRoom.removeIf(shortName::equals);
     }

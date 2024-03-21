@@ -185,7 +185,6 @@ public class Player {
         return null;
     }
 
-    //removes item from inventory
     public void dropItemInCurrentRoom(String shortName) {
         System.out.println("Write the name of the item you want to drop");
         Item item = findItemFromInventoryOrCurrentRoom(shortName);
