@@ -57,6 +57,8 @@ public class UserInterface {
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
                         System.out.println("You found the following items lying around:");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
+                        System.out.println("In front of you stands and enemy: ");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getEnemiesInRoom());
                     } else {
                         System.out.println("You can't go this way");
                     }
@@ -67,6 +69,8 @@ public class UserInterface {
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
                         System.out.println("You found the following items lying around:");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
+                        System.out.println("In front of you stands and enemy: ");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getEnemiesInRoom());
                     } else {
                         System.out.println("You can't go this way");
                     }
@@ -77,6 +81,8 @@ public class UserInterface {
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
                         System.out.println("You found the following items lying around :");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
+                        System.out.println("In front of you stands and enemy: ");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getEnemiesInRoom());
                     } else {
                         System.out.println("You can't go this way");
                     }
@@ -87,6 +93,8 @@ public class UserInterface {
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
                         System.out.println("You found the following items lying around:");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
+                        System.out.println("In front of you stands and enemy: ");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getEnemiesInRoom());
                     } else {
                         System.out.println("You can't go this way");
                     }
@@ -140,7 +148,7 @@ public class UserInterface {
         System.out.println("As you move around in the rooms, you will find things to eat, items to take and weapons to equip.");
         System.out.println("But beware: Not all edible stuff is good for your health, an not all weapons are good!");
         System.out.println("In the distance you see your first encounter " + controller.getGameMap().getFirstRoom().getEnemiesInRoom() + " as a voice whisperes: ");
-        System.out.println("'Your goal is to find the " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + " - let the games begin!'");
+        System.out.println("'your goal is to find the final boss called " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + " and loot their treasure; let the games begin'");
     }
 
     public void userHelp() {

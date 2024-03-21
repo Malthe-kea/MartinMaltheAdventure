@@ -58,8 +58,7 @@ public class Map {
         //ROOM 5
         room5.setSouth(room8);
         room5.addItemToCurrentRoom(new Food("brikjuice", "Appelsinjuive", 15));
-        room4.addEnemyToCurrentRoom(new Enemy("BigBoss", "Lastmanstanding", 100, 25, new RangedWeapon("MagicWand", "Tryllestøv bliver sendt mod dig", 35, 20)));
-
+        room5.addEnemyToCurrentRoom(new Enemy("BigBoss", "Last man standing", 100, 25, new MeleeWeapon(finalItemForTheFinalBoss(), "Grail", 0)));
         //ROOM 6
         room6.setNorth(room3);
         room6.setSouth(room9);
@@ -96,5 +95,19 @@ public class Map {
     public Room getLastRoom () {
         return lastRoom;
     }
+    public String finalItemForTheFinalBoss() {
+        return "The Divine Holy Grail stands as the quintessence of celestial splendor, an ethereal vessel imbued with the luminescence of the heavens. " + " \n" +
+                "It is a paragon of sanctity, a chalice of unparalleled reverence that radiates with a divine aura, shimmering with the purest of lights. " +
+                "\nThis sacrosanct relic, cloaked in the mystique of ancient lore, is the epitome of spiritual magnificence and miraculous wonder.\n" +
+                "Crafted from the essence of holiness, the Grail is a beacon of hope, a symbol of the ultimate quest for enlightenment and redemption. " +
+                "\nIts mere presence is said to be a benediction, bestowing blessings and grace upon those who gaze upon its hallowed form. " +
+                "\nThe Grail is not merely an artifact; it is a consecrated icon, a testament to the boundless glory and majesty of the divine.\n"+
+                "Adorned with the most resplendent jewels, each facet and gem reflecting the infinite spectrum of creation, the Holy Grail is a masterpiece of celestial artistry. " +
+                "\nIt is a vessel of prophecy and virtue, a cornucopia of sacred power that transcends the temporal realm, bridging the mortal world with the divine firmament.\n" +
+                "In the annals of legend, the Divine Holy Grail is venerated as the apotheosis of purity and the embodiment of the divine will. " +
+                "\nIt is an object of veneration, an eternal symbol of the quest for the divine, a pursuit as timeless as the stars that wheel overhead in the firmament of eternity.";
+
+    }
+
 
 }
