@@ -44,8 +44,8 @@ public class Map {
         //ROOM 3
         room3.setWest(room2);
         room3.setSouth(room6);
-        room3.addItemToCurrentRoom(new Food("blue-pill", "A blue pill", 10));
-        room3.addItemToCurrentRoom(new Food("red-pill", "a red pill", 5));
+        room3.addItemToCurrentRoom(new Food("blue-pill", "A blue pill", 0));
+        room3.addItemToCurrentRoom(new Food("red-pill", "a red pill", 0));
 
         //ROOM 4
         room4.setNorth(room1);
@@ -62,9 +62,7 @@ public class Map {
 
         room6.setNorth(room3);
         room6.setSouth(room9);
-        room6.addItemToCurrentRoom((new Food("fastelavnsbolle", "Den dyre fra Lagkagehuset", 20)));
-        room6.addItemToCurrentRoom((new Food("kylling", "Rå kylling der har ligget lidt for længe", -15)));
-        room6.addEnemyToCurrentRoom(new Enemy("Morpheus", "En skikkelse klædt i lang lædderjakke", 10000, -5, new MeleeWeapon(" ", " ", 0)));
+        room6.addEnemyToCurrentRoom(new Enemy("Morpheus", "An entity dressed in a black leather coat", 10000, -5, new MeleeWeapon(" ", " ", 0)));
 
 
         //ROOM 7
@@ -85,9 +83,7 @@ public class Map {
         //ROOM 9
         room9.setWest(room8);
         room9.setNorth(room6);
-        room9.addItemToCurrentRoom(new Food("majs", "En bøtte dåsemajs der udløb for 5 år siden", -10));
-        room9.addItemToCurrentRoom(new Food("glögg", "En flaske alkoholfri Glögg fra Remam 1000", 3));
-        room9.addEnemyToCurrentRoom(new Enemy("Ged", "En sur ged", 25, 10, new MeleeWeapon("Dåse", "En halvspist dåse", 2)));
+        room9.addEnemyToCurrentRoom(new Enemy("Agent-Smith", "An ominous looking agent with nothing good in mind", 75, 10, new MeleeWeapon(" ", "", 0)));
     }
 
     public Room getFirstRoom() {
