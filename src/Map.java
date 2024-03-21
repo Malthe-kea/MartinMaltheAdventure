@@ -97,7 +97,4 @@ public class Map {
         return lastRoom;
     }
 
-    public void setEnemyInRoom () {
-
-    }
 }
