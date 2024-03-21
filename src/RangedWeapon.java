@@ -2,18 +2,18 @@ public class RangedWeapon extends Weapon {
 
     //ATTRIBUTES
     protected int ammo;
-    private int damageDoneToOpponenetPerStrike;
+
 
 
     //KONSTRUKTØR
-    public RangedWeapon(String shortname, String longName,int damageDoneToOpponentPerStrike, int ammo) {
-        super(shortname, longName, damageDoneToOpponentPerStrike);
+    public RangedWeapon(String shortname, String longName,int damagePerStrike, int ammo) {
+        super(shortname, longName, damagePerStrike);
         this.ammo = ammo;
     }
 
 
-    @Override
-    public int getAmmoLeft() {
+
+    public int getUsesLeft() {
         return ammo--;
     }
 
@@ -23,7 +23,7 @@ public class RangedWeapon extends Weapon {
     }
 
    int getDamagePerStrike() {
-        return damageDoneToOpponenetPerStrike;
+        return damagePerStrike;
     }
 
 

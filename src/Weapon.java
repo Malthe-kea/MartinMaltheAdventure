@@ -1,6 +1,6 @@
 public abstract class Weapon extends Item {
     //Attributes
-    private int damagePerStrike;
+    protected int damagePerStrike;
 
 
     //Constructor
@@ -12,7 +12,7 @@ public abstract class Weapon extends Item {
 
 
     abstract void useWeapon();
-    abstract int getAmmoLeft();
 
     abstract int getDamagePerStrike();
+    abstract int getUsesLeft ();
 }

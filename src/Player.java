@@ -78,9 +78,9 @@ public class Player {
 
     public void attack(String enemyShortName) {
         String enemyToAttack = enemyShortName;
-        ArrayList<Enemy> enemyInRoom  = currentRoom.getEnemiesInRoom();
+        ArrayList<Enemy> enemyInRoom = currentRoom.getEnemiesInRoom();
 
-        if ( enemyInRoom.isEmpty()) {
+        if (enemyInRoom.isEmpty()) {
             System.out.println("no enemies in this room to fight");
         } else {
             for (Enemy enemy : enemyInRoom) {
@@ -90,24 +90,45 @@ public class Player {
                         System.out.println("You don't have a weapon equipped. You can chose from the following items " + getInventory());
                     } else if (equippedWeapon instanceof MeleeWeapon) {
                         equippedWeapon.useWeapon();
-                        int enemyNewHealthValue = enemy.getEnemyHealthPoints() - ((MeleeWeapon) equippedWeapon).getDamageDoneToOpponentPerStrike();
+                        int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
                         enemy.setEnemyHealthPoints(enemyNewHealthValue);
                         System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-                        System.out.println("The enemy now has " + enemyNewHealthValue);
-                    } else if (equippedWeapon.getAmmoLeft() == 0) {
+
+                        //TODO skal der indføres en metode her i stedet for? Jeg får exception-fejl.
+                        if (enemy.getEnemyHealthPoints() >= 0) {
+                            enemyInRoom.remove(enemy);
+                            System.out.println("you have defeated " + enemy);
+                        } else {
+                            System.out.println("The enemy now has " + enemyNewHealthValue);
+                        }
+                    } else if (equippedWeapon.getUsesLeft() == 0) {
                         System.out.println("You are out of ammo");
                     } else if (equippedWeapon instanceof RangedWeapon) {
                         equippedWeapon.useWeapon();
-                        int enemyNewHealthValue = (enemy.getEnemyHealthPoints()-equippedWeapon.getDamagePerStrike());
+                        int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
                         enemy.setEnemyHealthPoints(enemyNewHealthValue);
                         System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-                        System.out.println("The enemy now has " + enemyNewHealthValue);
-                        System.out.println("You have " + equippedWeapon.getAmmoLeft() + " ammo left");
+                        //TODO skal der indføres en metode her i stedet for? Jeg får exception-fejl.
+                        if (enemy.getEnemyHealthPoints() >= 0) {
+                            enemyInRoom.remove(enemy);
+                            System.out.println("you have defeated " + enemy);
+                        } else {
+                            System.out.println("The enemy now has " + enemyNewHealthValue);
+                            System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
+                        }
                     }
                 }
             }
         }
     }
+
+//    public boolean isEnemyDead () {
+//        if (enemy.getEnemyHealthPoints() >= 0) {
+//            enemyInRoom.remove(enemy);
+//            System.out.println("you have defeated " + enemy);
+//            return true;
+//        } return false;
+//    }
 
     public void takeItemAndAddToInventory(String itemName) {
         Item item = currentRoom.searchForItemsInCurrentRoom(itemName);
@@ -191,14 +212,16 @@ public class Player {
         roomInfo.append("\n").append(checkForEnemiesInCurrentRoom());
         return roomInfo.toString();
     }
-//TODO lav for each loop.
-    public Enemy checkForEnemiesInCurrentRoom () {
-        ArrayList<Enemy> enemyInRoom  = currentRoom.getEnemiesInRoom();
-        if ( enemyInRoom.isEmpty()) {
+
+    //TODO lav for each loop.
+    public Enemy checkForEnemiesInCurrentRoom() {
+        ArrayList<Enemy> enemyInRoom = currentRoom.getEnemiesInRoom();
+        if (enemyInRoom.isEmpty()) {
             System.out.println("no enemies in this room to fight");
         } else {
             System.out.println("In the roome you encounter " + enemyInRoom);
-        } return null;
+        }
+        return null;
     }
 
     //Overført fra "Adventure del 2 review" PDF slide 15
