@@ -33,19 +33,19 @@ public class UserInterface {
         switch (command) {
 
             case "take", "t" -> {
-                String itemToTake = commandParameter;
+                String itemToTake = command;
                 controller.getGamePlayer().takeItemAndAddToInventory(itemToTake);
             }
             case "drop", "d" -> {
-                String itemToDrop = commandParameter;
+                String itemToDrop = command;
                 controller.getGamePlayer().dropItemInCurrentRoom(itemToDrop);
             }
             case "eat", "drink" -> {
-                controller.getGamePlayer().eatFoodOrItem(commandParameter);
+                controller.getGamePlayer().eatFoodOrItem(command);
             }
             case "attack", "a" -> {
-                String enemyToAttack = commandParameter;
-                controller.getGamePlayer().attack(enemyToAttack);
+                String enemyToAttack = command;
+                controller.getGamePlayer().attack(commandParameter);
             }
             case "equip" -> {
                 controller.getGamePlayer().equipWeapon(commandParameter);
