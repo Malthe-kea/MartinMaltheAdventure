@@ -146,7 +146,7 @@ public class UserInterface {
         System.out.println(controller.getGameMap().getFirstRoom().getItemsInCurrentRoom());
         System.out.println();
         System.out.println("In the distance you see your first encounter " + controller.getGameMap().getFirstRoom().getEnemiesInRoom() + " as a voice whisperes: ");
-        System.out.println("'your goal is to find the final boss called " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + "and loot their treasure; let the games begin'");
+        System.out.println("'your goal is to find the final boss called " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + " and loot their treasure; let the games begin'");
     }
 
     public void userHelp() {
