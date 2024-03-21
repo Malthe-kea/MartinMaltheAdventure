@@ -114,7 +114,7 @@ public class UserInterface {
                 }
 
                 default -> {
-                    controller.getGamePlayer().setPlayerHealth(controller.getGamePlayer().getPlayerHealth() - 1);
+                    controller.getGamePlayer().setPlayerHealth(- 1);
                     System.out.println("INVALID COMMAND - NOW FEEL MY WRATH");
                     System.out.println("*a ghost gives you a 'trælår' and  you lose 1HP*");
                     System.out.println("You current HP is now " + controller.getGamePlayer().getPlayerHealth());
@@ -125,21 +125,21 @@ public class UserInterface {
 
 
     public void userStartMenu() {
-            System.out.println("You find yourself on a moist dungeon floor in what seems to be an old castle");
-            System.out.println("'Where am I?' you whisper, as the sound of your voice echoes through the room.");
-            System.out.println("Next to you lies a chalkboard with a message written on it :");
-            System.out.println();
-            System.out.println("'Your voice is for no use in this world.");
-            System.out.println("From now on, you are only allowed to write the following commands on me");
-            System.out.println("Take | Drop | Go (n,s,e,w)| Inventory | Help | Exit");
-            System.out.println("Any other commands will punish you");
-            System.out.println();
-            System.out.println("After adjusting your eyes you find the following items on the floor: ");
-            System.out.println(controller.getGameMap().getFirstRoom().getItemsInCurrentRoom());
-            System.out.println();
-        System.out.println("In the distance you see your first encounter " + controller.getGameMap().getFirstRoom().getEnemiesInRoom()+ " as a voice whisperes ");
-            System.out.println("your goal is to find the " + controller.getGameMap().getLastRoom().getEnemiesInRoom());
-        }
+        System.out.println("You find yourself on a moist dungeon floor in what seems to be an old castle");
+        System.out.println("'Where am I?' you whisper, as the sound of your voice echoes through the room.");
+        System.out.println("Next to you lies a chalkboard with a message written on it :");
+        System.out.println();
+        System.out.println("'Your voice is for no use in this world.");
+        System.out.println("From now on, you are only allowed to write the following commands on me");
+        System.out.println("Take | Drop | Go (n,s,e,w)| Inventory | Help | Exit");
+        System.out.println("Any other commands will punish you");
+        System.out.println();
+        System.out.println("After adjusting your eyes you find the following items on the floor: ");
+        System.out.println(controller.getGameMap().getFirstRoom().getItemsInCurrentRoom());
+        System.out.println();
+        System.out.println("In the distance you see your first encounter " + controller.getGameMap().getFirstRoom().getEnemiesInRoom() + " as a voice whisperes: ");
+        System.out.println("'your goal is to find the " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + ", let the games begin'");
+    }
 
     public void userHelp() {
         System.out.println("Write 'Look' to go look around you");
@@ -150,8 +150,6 @@ public class UserInterface {
         System.out.println("Write 'Health' to see your current health points");
     }
 
-    //Split-method bruges til at dele kommandoen til switch-casen op i to dele -
-    // - så spilleren f.eks. kan skrive "take example" for at tilgå "take" i switch og derefter videresende "example" til take-metoden i Player
     public String processUserInput(String command) {
         String[] userInputArray = command.split(" ");
         this.command = userInputArray[0];

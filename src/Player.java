@@ -5,7 +5,7 @@ public class Player {
     //Attributes
     private Room currentRoom;
     private ArrayList<Item> inventory;
-    private int playerHealth = 0;
+    private int playerHealth = 1;
     private Weapon currentWeapon;
     private ArrayList enemyInRoom;
     private Enemy enemyToAttack;
@@ -34,6 +34,9 @@ public class Player {
         return currentWeapon;
     }
 
+    public void setGamePlayerHealth(int health) {
+        this.playerHealth = health;
+    }
     public void setPlayerHealth(int changeInHealth) {
         playerHealth += changeInHealth;
         if (playerHealth <= 0) { // health range er sat fra 0-100
