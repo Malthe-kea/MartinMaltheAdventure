@@ -61,7 +61,7 @@ public class Map {
         //ROOM 6
         room6.setNorth(room3);
         room6.setSouth(room9);
-        room6.addEnemyToCurrentRoom(new Enemy("Morpheus", "En skikkelse klædt i lang lædderjakke", 10000, -5, new MeleeWeapon(" ", " ", 0)));
+        room6.addEnemyToCurrentRoom(new Enemy("Morpheus", "An entity dressed in a black leather coat", 10000, -5, new MeleeWeapon(" ", " ", 0)));
 
 
         //ROOM 7
