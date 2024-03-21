@@ -114,16 +114,21 @@ public class UserInterface {
 
 
     public void userStartMenu() {
-        System.out.println("You are now ready to explore the wilderness!\n");
-        System.out.println("Please choose your next action:");
-        System.out.println("Write 'Go north' to go north");
-        System.out.println("Write 'Go west' to go west");
-        System.out.println("Write 'Go south' to go south");
-        System.out.println("Write 'Go east' to go east");
-        System.out.println("Write 'Look' to go look around you");
-        System.out.println("Write 'Help' to ask for help");
-        System.out.println("Write attack and then monster, to attack a monster");
-    }
+            System.out.println("You find yourself on a moist dungeon floor in what seems to be an old castle");
+            System.out.println("'Where am I?' you whisper, as the sound of your voice echoes through the room.");
+            System.out.println("Next to you lies a chalkboard with a message written on it :");
+            System.out.println();
+            System.out.println("'Your voice is for no use in this world.");
+            System.out.println("From now on, you are only allowed to write the following commands on me");
+            System.out.println("Take | Drop | Go (n,s,e,w)| Inventory | Help | Exit");
+            System.out.println("Any other commands will punish you");
+            System.out.println();
+            System.out.println("After adjusting your eyes you find the following items on the floor: ");
+            System.out.println(controller.getGameMap().getFirstRoom().getItemsInCurrentRoom());
+            System.out.println();
+            System.out.println("You pick up the dagger as a dark voice whispers: ");
+            System.out.println("'Let teh games begin lol'");
+        }
 
     public void userHelp() {
         System.out.println("Write 'Look' to go look around you");
