@@ -54,28 +54,28 @@ public class UserInterface {
                 }
                 case "go north", "north", "n" -> {
                     if (controller.getGamePlayer().move("north")) {
-                        System.out.println("Going north");
+                        System.out.println("You are moving north");
                     } else {
                         System.out.println("You can't go this way");
                     }
                 }
                 case "go south", "south", "s" -> {
                     if (controller.getGamePlayer().move("south")) {
-                        System.out.println("Going south");
+                        System.out.println("You are moving south");
                     } else {
                         System.out.println("You can't go this way");
                     }
                 }
                 case "go east", "east", "e" -> {
                     if (controller.getGamePlayer().move("east")) {
-                        System.out.println("Going east");
+                        System.out.println("You are moving east");
                     } else {
                         System.out.println("You can't go this way");
                     }
                 }
                 case "go west", "west", "w" -> {
                     if (controller.getGamePlayer().move("west")) {
-                        System.out.println("Going west");
+                        System.out.println("You are moving west");
                     } else {
                         System.out.println("You can't go this way");
                     }
