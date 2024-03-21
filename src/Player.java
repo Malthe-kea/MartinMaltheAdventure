@@ -106,7 +106,8 @@ public class Player {
                 int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
                 enemy.setEnemyHealthPoints(enemyNewHealthValue);
                 System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-                //TODO skal få fjende til at slå tilbage
+                playerHealth = enemyAttackPlayer() - playerHealth;
+                playerDied();
                 if (enemyNewHealthValue <= 0) {
                     enemyInRoom.remove(enemy);
                     System.out.println("you have defeated " + enemy);
@@ -119,6 +120,16 @@ public class Player {
     }
 
 
+    //TODO lav metoder til enemy attack player og omvendt.
+    public int enemyAttackPlayer() {
+        enemyInRoom = currentRoom.getEnemiesInRoom();
+        enemy = (Enemy) enemyInRoom.get(0);
+        int playerNewHealth = (playerHealth - ((Enemy) enemyInRoom.get(0)).getEnemyAttackPoints());
+        System.out.println(enemy + "attacked you with " + enemy.getEnemyAttackPoints());
+        System.out.println("Your current HP is now " + playerNewHealth);
+        return playerNewHealth;
+    }
+
 
 //    public boolean isEnemyDead () {
 //        if (enemy.getEnemyHealthPoints() >= 0) {
@@ -128,115 +139,114 @@ public class Player {
 //        } return false;
 //    }
 
-public void takeItemAndAddToInventory(String itemName) {
-    Item item = currentRoom.searchForItemsInCurrentRoom(itemName);
-    if (item != null) {
-        currentRoom.removeItem(item);
-        addItemToInventory(item);
-        System.out.println("you took the: " + item.getShortName() + ".");
-    } else {
-        System.out.println("no item with the name : " + itemName + " exists.");
-    }
-}
-
-public Item findItemFromInventoryOrCurrentRoom(String shortName) {
-    for (Item i : inventory) {
-        if (i.getShortName().equals(shortName)) {
-            return i;
+    public void takeItemAndAddToInventory(String itemName) {
+        Item item = currentRoom.searchForItemsInCurrentRoom(itemName);
+        if (item != null) {
+            currentRoom.removeItem(item);
+            addItemToInventory(item);
+            System.out.println("you took the: " + item.getShortName() + ".");
+        } else {
+            System.out.println("no item with the name : " + itemName + " exists.");
         }
     }
-    for (Item i : currentRoom.getItemsInCurrentRoom()) {
-        if (i.getShortName().equals(shortName)) {
-            return i;
+
+    public Item findItemFromInventoryOrCurrentRoom(String shortName) {
+        for (Item i : inventory) {
+            if (i.getShortName().equals(shortName)) {
+                return i;
+            }
+        }
+        for (Item i : currentRoom.getItemsInCurrentRoom()) {
+            if (i.getShortName().equals(shortName)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public Item findItemFromInventory(String shortName) {
+        for (Item i : inventory) {
+            if (i.getShortName().equals(shortName)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    //removes item from inventory
+    public void dropItemInCurrentRoom(String shortName) {
+        System.out.println("Write the name of the item you want to drop");
+        Item item = findItemFromInventoryOrCurrentRoom(shortName);
+        if (item != null) {
+            removeItem(item);
+            currentRoom.addItemToCurrentRoom(item);
+            System.out.println("the item " + item + " has been removed");
+        } else {
+            System.out.println("no item in inventory with the name :" + shortName + ".");
+        }
+
+    }
+
+    public void addItemToInventory(Item item) {
+        inventory.add(item);
+    }
+
+    public void removeItem(Item item) {
+        inventory.remove(item);
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public Weapon getEquippedWeapon() {
+        return currentWeapon;
+    }
+
+    public String getEnemiesInCurrentRoom() {
+        enemyInRoom = currentRoom.getEnemiesInRoom();
+        String enemyMessage;
+        if (enemyInRoom.isEmpty()) {
+            enemyMessage = "no enemies in this room to fight";
+        } else {
+            enemyMessage = "In the roome you encounter " + enemyInRoom + ".";
+        }
+        return enemyMessage;
+    }
+
+    public String look() {
+        StringBuilder roomInfo = new StringBuilder();
+        roomInfo.append("You are in: ").append(currentRoom.getRoomName());
+        roomInfo.append("\n").append(currentRoom.getRoomDescription());
+        roomInfo.append("\n");
+        roomInfo.append("You find the following items in the room: ");
+        roomInfo.append("\n").append(currentRoom.getItemsInCurrentRoom());
+        roomInfo.append("\n").append(getEnemiesInCurrentRoom());
+        return roomInfo.toString();
+    }
+
+    public boolean move(String direction) {
+        Room desiredRoom = switch (direction) {
+            case "north" -> currentRoom.getNorth();
+            case "south" -> currentRoom.getSouth();
+            case "east" -> currentRoom.getEast();
+            case "west" -> currentRoom.getWest();
+            default -> null;
+        };
+
+        if (desiredRoom != null) {
+            currentRoom = desiredRoom;
+            return true;
+        } else {
+            return false;
         }
     }
-    return null;
-}
-
-public Item findItemFromInventory(String shortName) {
-    for (Item i : inventory) {
-        if (i.getShortName().equals(shortName)) {
-            return i;
-        }
-    }
-    return null;
-}
-
-//removes item from inventory
-public void dropItemInCurrentRoom(String shortName) {
-    System.out.println("Write the name of the item you want to drop");
-    Item item = findItemFromInventoryOrCurrentRoom(shortName);
-    if (item != null) {
-        removeItem(item);
-        currentRoom.addItemToCurrentRoom(item);
-        System.out.println("the item " + item + " has been removed");
-    } else {
-        System.out.println("no item in inventory with the name :" + shortName + ".");
-    }
-
-}
-
-public void addItemToInventory(Item item) {
-    inventory.add(item);
-}
-
-public void removeItem(Item item) {
-    inventory.remove(item);
-}
-
-public ArrayList<Item> getInventory() {
-    return inventory;
-}
-
-public Room getCurrentRoom() {
-    return currentRoom;
-}
-
-public void setCurrentRoom(Room currentRoom) {
-    this.currentRoom = currentRoom;
-}
-
-public Weapon getEquippedWeapon() {
-    return currentWeapon;
-}
-
-public String look() {
-    StringBuilder roomInfo = new StringBuilder();
-    roomInfo.append("You are in: ").append(currentRoom.getRoomName());
-    roomInfo.append("\n").append(currentRoom.getRoomDescription());
-    roomInfo.append("\n");
-    roomInfo.append("You find the following items in the room: ");
-    roomInfo.append("\n").append(currentRoom.getItemsInCurrentRoom());
-    roomInfo.append("\n").append(checkForEnemiesInCurrentRoom());
-    return roomInfo.toString();
-}
-
-//TODO lav for each loop.
-public Enemy checkForEnemiesInCurrentRoom() {
-    ArrayList<Enemy> enemyInRoom = currentRoom.getEnemiesInRoom();
-    if (enemyInRoom.isEmpty()) {
-        System.out.println("no enemies in this room to fight");
-    } else {
-        System.out.println("In the roome you encounter " + enemyInRoom);
-    }
-    return null;
-}
-
-//Overført fra "Adventure del 2 review" PDF slide 15
-public boolean move(String direction) {
-    Room desiredRoom = switch (direction) {
-        case "north" -> currentRoom.getNorth();
-        case "south" -> currentRoom.getSouth();
-        case "east" -> currentRoom.getEast();
-        case "west" -> currentRoom.getWest();
-        default -> null;
-    };
-
-    if (desiredRoom != null) {
-        currentRoom = desiredRoom;
-        return true;
-    } else {
-        return false;
-    }
-}
 }

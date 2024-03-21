@@ -14,6 +14,7 @@ public class AdventureController {
         return gamePlayer;
     }
 
+
     public Map getGameMap() {
         return gameMap;
     }

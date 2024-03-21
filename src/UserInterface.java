@@ -25,6 +25,7 @@ public class UserInterface {
         userStartMenu();
 
         while (gameIsRunning) {
+            //controller.getGamePlayer().playerDied();
             command = "";
             commandParameter = "";
             command = processUserInput(scanner.next().toLowerCase());
@@ -101,7 +102,12 @@ public class UserInterface {
                     }
                 }
 
-                default -> System.out.println("Your input is invalid - try writing something else");
+                default -> {
+                    controller.getGamePlayer().setPlayerHealth(controller.getGamePlayer().getPlayerHealth() - 1);
+                    System.out.println("INVALID COMMAND - NOW FEEL MY WRATH");
+                    System.out.println("*a ghost gives you a 'trælår' and  you lose 1HP*");
+                    System.out.println("You current HP is now " + controller.getGamePlayer().getPlayerHealth());
+                }
             }
         }
     }
