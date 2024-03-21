@@ -54,6 +54,9 @@ public class UserInterface {
                 case "go north", "north", "n" -> {
                     if (controller.getGamePlayer().move("north")) {
                         System.out.println("You are moving north");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
+                        System.out.println("you find the following items on lying around :");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
                     } else {
                         System.out.println("You can't go this way");
                     }
@@ -71,6 +74,9 @@ public class UserInterface {
                 case "go east", "east", "e" -> {
                     if (controller.getGamePlayer().move("east")) {
                         System.out.println("You are moving east");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
+                        System.out.println("you find the following items on lying around :");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
                     } else {
                         System.out.println("You can't go this way");
                     }
@@ -78,6 +84,9 @@ public class UserInterface {
                 case "go west", "west", "w" -> {
                     if (controller.getGamePlayer().move("west")) {
                         System.out.println("You are moving west");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
+                        System.out.println("you find the following items on lying around :");
+                        System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
                     } else {
                         System.out.println("You can't go this way");
                     }
