@@ -126,7 +126,7 @@ public class UserInterface {
             System.out.println("After adjusting your eyes you find the following items on the floor: ");
             System.out.println(controller.getGameMap().getFirstRoom().getItemsInCurrentRoom());
             System.out.println();
-            System.out.println("You pick up the dagger as a dark voice whispers: ");
+        System.out.println("In the distance you see your first encounter " + controller.getGameMap().getFirstRoom().getEnemiesInRoom()+ " as a voice whisperes ");
             System.out.println("'Let teh games begin lol'");
         }
 
