@@ -245,6 +245,7 @@ public class Player {
     public boolean move(String direction) {
         Room desiredRoom = switch (direction) {
             case "north" -> currentRoom.getNorth();
+
             case "south" -> currentRoom.getSouth();
             case "east" -> currentRoom.getEast();
             case "west" -> currentRoom.getWest();
