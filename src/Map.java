@@ -29,7 +29,7 @@ public class Map {
         room1.addItemToCurrentRoom(new Food("vin", "En 100 år gammel rosindrik", -15));
         room1.addItemToCurrentRoom(new Food("østers", "Håndplukket i østersøen", 30));
         room1.addItemToCurrentRoom(new Food("egekilde", "Danskvand med citrus", 20));
-        room1.addItemToCurrentRoom(new MeleeWeapon("kniv", "Den vildeste kniv i byen", 10000));
+        room1.addItemToCurrentRoom(new MeleeWeapon("kniv", "Den vildeste kniv i byen", 10));
         room1.addItemToCurrentRoom(new RangedWeapon("vandpistol", "Den sløveste vandpistol øst for Randers", 2, 15));
         room1.addEnemyToCurrentRoom(new Enemy("Diablo", "Djævlen hamselv", 20, 10, new MeleeWeapon("Trefork", "Lucifers",10)));
 
@@ -44,9 +44,8 @@ public class Map {
         //ROOM 3
         room3.setWest(room2);
         room3.setSouth(room6);
-        room3.addItemToCurrentRoom(new Food("rugbrød", "Rugbrød med leverpostej, rødbedder og peber", 10));
-        room3.addItemToCurrentRoom(new Food("agurk", "Den saftigste agurk i byen", 5));
-        room3.addEnemyToCurrentRoom(new Enemy("karlof", "Den største bandit i byen", 60, 20, new MeleeWeapon("Tigersabel", "En skarp fætter", 10)));
+        room3.addItemToCurrentRoom(new Food("blue-pill", "A blue pill", 10));
+        room3.addItemToCurrentRoom(new Food("red-pill", "a red pill", 5));
 
         //ROOM 4
         room4.setNorth(room1);
@@ -64,6 +63,8 @@ public class Map {
         room6.setSouth(room9);
         room6.addItemToCurrentRoom((new Food("fastelavnsbolle", "Den dyre fra Lagkagehuset", 20)));
         room6.addItemToCurrentRoom((new Food("kylling", "Rå kylling der har ligget lidt for længe", -15)));
+        room6.addEnemyToCurrentRoom(new Enemy("Morpheus", "En skikkelse klædt i lang lædderjakke", 10000, -5, new MeleeWeapon(" ", " ", 0)));
+
 
         //ROOM 7
         room7.setNorth(room4);
