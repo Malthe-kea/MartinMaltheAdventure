@@ -139,7 +139,7 @@ public class UserInterface {
         System.out.println();
         System.out.println("'Your voice is for no use in this world.");
         System.out.println("From now on, you are only allowed to write the following commands on me");
-        System.out.println("Take | Drop | Go (n,s,e,w)| Inventory | Help | Exit");
+        System.out.println("Take | Drop | Go (N,S,E,W)| Inventory | Help | Attack | Exit" );
         System.out.println("Any other commands will punish you");
         System.out.println();
         System.out.println("After adjusting your eyes, you find the following items on the floor: ");
@@ -147,8 +147,11 @@ public class UserInterface {
         System.out.println();
         System.out.println("As you move around in the rooms, you will find things to eat, items to take and weapons to equip.");
         System.out.println("But beware: Not all edible stuff is good for your health, an not all weapons are good!");
+        System.out.println("Last line of help will come here: 'When you are in Romania, go against the heat;");
+        System.out.println("First, when you cant go any further with dry feet, you shall seek a great bird and cross the black salt'");
+        System.out.println();
         System.out.println("In the distance you see your first encounter " + controller.getGameMap().getFirstRoom().getEnemiesInRoom() + " as a voice whisperes: ");
-        System.out.println("'your goal is to find the final boss called " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + " and loot their treasure; let the games begin'");
+        System.out.println("'Your goal is to find the final boss called " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + " and loot their treasure - let the games begin'");
     }
 
     public void userHelp() {
@@ -157,6 +160,7 @@ public class UserInterface {
         System.out.println("Write 'Take' followed by the name of an item to put it in your inventory");
         System.out.println("Write 'Inventory' to look up your inventory");
         System.out.println("Write 'Eat' or 'drink' followed by the name of a food or drink in your inventory you'd like to consume");
+        System.out.println("Write 'Attack' and then the monster you wish to attack, if you wanna attack that monster");
         System.out.println("Write 'Health' to see your current health points");
         System.out.println("Write 'Exit' to exit the game");
     }
