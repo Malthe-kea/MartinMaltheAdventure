@@ -58,7 +58,7 @@ public class Map {
         //ROOM 5
         room5.setSouth(room8);
         room5.addItemToCurrentRoom(new Food("brikjuice", "Appelsinjuive", 15));
-        room4.addEnemyToCurrentRoom(new Enemy("BigBoss", "Last man standing", 100, 25, new RangedWeapon("Magic Wand", "Tryllestøv bliver sendt mod dig", 35, 20)));
+        room4.addEnemyToCurrentRoom(new Enemy("BigBoss", "Lastmanstanding", 100, 25, new RangedWeapon("MagicWand", "Tryllestøv bliver sendt mod dig", 35, 20)));
 
         //ROOM 6
         room6.setNorth(room3);

@@ -55,7 +55,7 @@ public class UserInterface {
                     if (controller.getGamePlayer().move("north")) {
                         System.out.println("You are moving north");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
-                        System.out.println("you find the following items on lying around :");
+                        System.out.println("You found the following items lying around:");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
                     } else {
                         System.out.println("You can't go this way");
@@ -65,7 +65,7 @@ public class UserInterface {
                     if (controller.getGamePlayer().move("south")) {
                         System.out.println("You are moving south");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
-                        System.out.println("you find the following items on lying around :");
+                        System.out.println("You found the following items lying around:");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
                     } else {
                         System.out.println("You can't go this way");
@@ -75,7 +75,7 @@ public class UserInterface {
                     if (controller.getGamePlayer().move("east")) {
                         System.out.println("You are moving east");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
-                        System.out.println("you find the following items on lying around :");
+                        System.out.println("You found the following items lying around :");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
                     } else {
                         System.out.println("You can't go this way");
@@ -85,7 +85,7 @@ public class UserInterface {
                     if (controller.getGamePlayer().move("west")) {
                         System.out.println("You are moving west");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getRoomDescription());
-                        System.out.println("you find the following items on lying around :");
+                        System.out.println("You found the following items lying around:");
                         System.out.println(controller.getGamePlayer().getCurrentRoom().getItemsInCurrentRoom());
                     } else {
                         System.out.println("You can't go this way");
@@ -114,10 +114,10 @@ public class UserInterface {
                 }
 
                 default -> {
-                    controller.getGamePlayer().setPlayerHealth(- 1);
-                    System.out.println("INVALID COMMAND - NOW FEEL MY WRATH");
-                    System.out.println("*a ghost gives you a 'trælår' and  you lose 1HP*");
-                    System.out.println("You current HP is now " + controller.getGamePlayer().getPlayerHealth());
+                    controller.getGamePlayer().setPlayerHealth(-1);
+                    System.out.println("INVALID COMMAND - NOW FEEL MY WRATH!");
+                    System.out.println("*A ghost gives you a 'trælår' and  you lose 1HP*");
+                    System.out.println("Your current HP is now " + controller.getGamePlayer().getPlayerHealth());
                 }
             }
         }
@@ -134,11 +134,13 @@ public class UserInterface {
         System.out.println("Take | Drop | Go (n,s,e,w)| Inventory | Help | Exit");
         System.out.println("Any other commands will punish you");
         System.out.println();
-        System.out.println("After adjusting your eyes you find the following items on the floor: ");
+        System.out.println("After adjusting your eyes, you find the following items on the floor: ");
         System.out.println(controller.getGameMap().getFirstRoom().getItemsInCurrentRoom());
         System.out.println();
+        System.out.println("As you move around in the rooms, you will find things to eat, items to take and weapons to equip.");
+        System.out.println("But beware: Not all edible stuff is good for your health, an not all weapons are good!");
         System.out.println("In the distance you see your first encounter " + controller.getGameMap().getFirstRoom().getEnemiesInRoom() + " as a voice whisperes: ");
-        System.out.println("'your goal is to find the " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + ", let the games begin'");
+        System.out.println("'Your goal is to find the " + controller.getGameMap().getLastRoom().getEnemiesInRoom() + " - let the games begin!'");
     }
 
     public void userHelp() {
@@ -148,6 +150,7 @@ public class UserInterface {
         System.out.println("Write 'Inventory' to look up your inventory");
         System.out.println("Write 'Eat' or 'drink' followed by the name of a food or drink in your inventory you'd like to consume");
         System.out.println("Write 'Health' to see your current health points");
+        System.out.println("Write 'Exit' to exit the game");
     }
 
     public String processUserInput(String command) {
