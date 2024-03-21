@@ -5,7 +5,7 @@ public class Player {
     //Attributes
     private Room currentRoom;
     private ArrayList<Item> inventory;
-    private int playerHealth = 1;
+    private int playerHealth ;
     private Weapon currentWeapon;
     private ArrayList enemyInRoom;
     private Enemy enemyToAttack;
