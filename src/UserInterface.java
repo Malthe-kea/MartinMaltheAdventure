@@ -122,7 +122,7 @@ public class UserInterface {
         System.out.println("Write 'Go east' to go east");
         System.out.println("Write 'Look' to go look around you");
         System.out.println("Write 'Help' to ask for help");
-        System.out.println("Write 'Attack' and which monster you wanna attack, to attack a monster");
+        System.out.println("Write attack and then monster, to attack a monster");
     }
 
     public void userHelp() {
