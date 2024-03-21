@@ -78,24 +78,30 @@ public class Player {
 
     public void attack(String enemyShortName) {
         String enemyToAttack = enemyShortName;
-
         ArrayList<Enemy> enemyInRoom  = currentRoom.getEnemiesInRoom();
+
         if ( enemyInRoom.isEmpty()) {
             System.out.println("no enemies in this room to fight");
         } else {
-            for (Enemy e : enemyInRoom) {
+            for (Enemy enemy : enemyInRoom) {
                 if (enemy.getName().equalsIgnoreCase(enemy.shortName)) {
-                    Weapon equippedWeapon = controller.getGamePlayer().getEquippedWeapon();
+                    Weapon equippedWeapon = getEquippedWeapon();
                     if (equippedWeapon == null) {
                         System.out.println("You don't have a weapon equipped. You can chose from the following items " + getInventory());
                     } else if (equippedWeapon instanceof MeleeWeapon) {
                         equippedWeapon.useWeapon();
+                        int enemyNewHealthValue = enemy.getEnemyHealthPoints() - ((MeleeWeapon) equippedWeapon).getDamageDoneToOpponentPerStrike();
+                        enemy.setEnemyHealthPoints(enemyNewHealthValue);
                         System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+                        System.out.println("The enemy now has " + enemyNewHealthValue);
                     } else if (equippedWeapon.getAmmoLeft() == 0) {
                         System.out.println("You are out of ammo");
                     } else if (equippedWeapon instanceof RangedWeapon) {
                         equippedWeapon.useWeapon();
+                        int enemyNewHealthValue = (enemy.getEnemyHealthPoints()-equippedWeapon.getDamagePerStrike());
+                        enemy.setEnemyHealthPoints(enemyNewHealthValue);
                         System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+                        System.out.println("The enemy now has " + enemyNewHealthValue);
                         System.out.println("You have " + equippedWeapon.getAmmoLeft() + " ammo left");
                     }
                 }
@@ -171,10 +177,6 @@ public class Player {
         this.currentRoom = currentRoom;
     }
 
-    public void setCurrentWeapon(Weapon currentWeapon) {
-        this.currentWeapon = currentWeapon;
-    }
-
     public Weapon getEquippedWeapon() {
         return currentWeapon;
     }
@@ -186,7 +188,17 @@ public class Player {
         roomInfo.append("\n");
         roomInfo.append("You find the following items in the room: ");
         roomInfo.append("\n").append(currentRoom.getItemsInCurrentRoom());
+        roomInfo.append("\n").append(checkForEnemiesInCurrentRoom());
         return roomInfo.toString();
+    }
+//TODO lav for each loop.
+    public Enemy checkForEnemiesInCurrentRoom () {
+        ArrayList<Enemy> enemyInRoom  = currentRoom.getEnemiesInRoom();
+        if ( enemyInRoom.isEmpty()) {
+            System.out.println("no enemies in this room to fight");
+        } else {
+            System.out.println("In the roome you encounter " + enemyInRoom);
+        } return null;
     }
 
     //Overført fra "Adventure del 2 review" PDF slide 15

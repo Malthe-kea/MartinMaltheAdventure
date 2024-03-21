@@ -27,7 +27,7 @@ public class Map {
         room1.addItemToCurrentRoom(new Food("vin", "En 100 år gammel rosindrik", -15));
         room1.addItemToCurrentRoom(new MeleeWeapon("kniv", "Den vildeste kniv i byen", 10));
         room1.addItemToCurrentRoom(new RangedWeapon("vandpistol", "Den sløveste vandpistol øst for Randers", 1, 1));
-        room1.addItemToCurrentRoom(new Enemy("Diablo", "Djævlen hamselv", 5, new MeleeWeapon("Trefork", "Lucifers",10)));
+        room1.addEnemyToCurrentRoom(new Enemy("Diablo", "Djævlen hamselv", 5, new MeleeWeapon("Trefork", "Lucifers",10)));
 
         //ROOM 2
         room2.setWest(room1);

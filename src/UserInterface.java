@@ -28,79 +28,80 @@ public class UserInterface {
             command = "";
             commandParameter = "";
             command = processUserInput(scanner.next().toLowerCase());
-        }
 
-        switch (command) {
 
-            case "take", "t" -> {
-                String itemToTake = command;
-                controller.getGamePlayer().takeItemAndAddToInventory(itemToTake);
-            }
-            case "drop", "d" -> {
-                String itemToDrop = command;
-                controller.getGamePlayer().dropItemInCurrentRoom(itemToDrop);
-            }
-            case "eat", "drink" -> {
-                controller.getGamePlayer().eatFoodOrItem(command);
-            }
-            case "attack", "a" -> {
-                String enemyToAttack = command;
-                controller.getGamePlayer().attack(commandParameter);
-            }
-            case "equip" -> {
-                controller.getGamePlayer().equipWeapon(commandParameter);
-            }
-            case "go north", "north", "n" -> {
-                if (controller.getGamePlayer().move("north")) {
-                    System.out.println("Going north");
-                } else {
-                    System.out.println("You can't go this way");
-                }
-            }
-            case "go south", "south", "s" -> {
-                if (controller.getGamePlayer().move("south")) {
-                    System.out.println("Going south");
-                } else {
-                    System.out.println("You can't go this way");
-                }
-            }
-            case "go east", "east", "e" -> {
-                if (controller.getGamePlayer().move("east")) {
-                    System.out.println("Going east");
-                } else {
-                    System.out.println("You can't go this way");
-                }
-            }
-            case "go west", "west", "w" -> {
-                if (controller.getGamePlayer().move("west")) {
-                    System.out.println("Going west");
-                } else {
-                    System.out.println("You can't go this way");
-                }
-            }
-            case "exit" -> {
-                System.exit(0);
-            }
-            case "help", "h" -> {
-                userHelp();
-            }
-            case "look", "l" -> {
-                System.out.println(controller.look());
-            }
-            case "health", "hp" -> {
-                System.out.println("You currently have " + controller.getGamePlayer().getPlayerHealth() + " HP");
-                System.out.println("To increase your HP, try to eat or drink something");
-            }
-            case "inventory", "inv", "i" -> {
-                if (controller.getGamePlayer().getInventory().isEmpty()) {
-                    System.out.println("Your inventory is empty");
-                } else {
-                    System.out.println(controller.getGamePlayer().getInventory());
-                    System.out.println(controller.getGamePlayer().getCurrentWeapon());
-                }
-            }
+            switch (command) {
 
-            default -> System.out.println("Your input is invalid - try writing something else");
+                case "take", "t" -> {
+                    String itemToTake = commandParameter;
+                    controller.getGamePlayer().takeItemAndAddToInventory(itemToTake);
+                }
+                case "drop", "d" -> {
+                    String itemToDrop = commandParameter;
+                    controller.getGamePlayer().dropItemInCurrentRoom(itemToDrop);
+                }
+                case "eat", "drink" -> {
+                    controller.getGamePlayer().eatFoodOrItem(commandParameter);
+                }
+                case "attack", "a" -> {
+                    String enemyToAttack = commandParameter;
+                    controller.getGamePlayer().attack(enemyToAttack);
+                }
+                case "equip" -> {
+                    controller.getGamePlayer().equipWeapon(commandParameter);
+                }
+                case "go north", "north", "n" -> {
+                    if (controller.getGamePlayer().move("north")) {
+                        System.out.println("Going north");
+                    } else {
+                        System.out.println("You can't go this way");
+                    }
+                }
+                case "go south", "south", "s" -> {
+                    if (controller.getGamePlayer().move("south")) {
+                        System.out.println("Going south");
+                    } else {
+                        System.out.println("You can't go this way");
+                    }
+                }
+                case "go east", "east", "e" -> {
+                    if (controller.getGamePlayer().move("east")) {
+                        System.out.println("Going east");
+                    } else {
+                        System.out.println("You can't go this way");
+                    }
+                }
+                case "go west", "west", "w" -> {
+                    if (controller.getGamePlayer().move("west")) {
+                        System.out.println("Going west");
+                    } else {
+                        System.out.println("You can't go this way");
+                    }
+                }
+                case "exit" -> {
+                    System.exit(0);
+                }
+                case "help", "h" -> {
+                    userHelp();
+                }
+                case "look", "l" -> {
+                    System.out.println(controller.look());
+                }
+                case "health", "hp" -> {
+                    System.out.println("You currently have " + controller.getGamePlayer().getPlayerHealth() + " HP");
+                    System.out.println("To increase your HP, try to eat or drink something");
+                }
+                case "inventory", "inv", "i" -> {
+                    if (controller.getGamePlayer().getInventory().isEmpty()) {
+                        System.out.println("Your inventory is empty");
+                    } else {
+                        System.out.println(controller.getGamePlayer().getInventory());
+                        System.out.println(controller.getGamePlayer().getCurrentWeapon());
+                    }
+                }
+
+                default -> System.out.println("Your input is invalid - try writing something else");
+            }
         }
     }
 
@@ -131,7 +132,7 @@ public class UserInterface {
     public String processUserInput(String command) {
         String[] userInputArray = command.split(" ");
         this.command = userInputArray[0];
-        if (this.command.equals("eat") || this.command.equals("drink") || this.command.equals("drop") || this.command.equals("take") || this.command.equals("equip")) {
+        if (this.command.equals("eat") || this.command.equals("drink") || this.command.equals("drop") || this.command.equals("take") || this.command.equals("equip") || this.command.equals("attack")) {
             commandParameter = userInputArray[1];
             return userInputArray[0];
         }

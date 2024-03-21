@@ -11,4 +11,12 @@ public class Enemy extends Item {
 public String getName () {
         return shortName;
 }
+
+    public int getEnemyHealthPoints() {
+        return healthPoints;
+    }
+
+    public int setEnemyHealthPoints(int enemyNewHealthPoints) {
+        return healthPoints;
+    }
 }

@@ -14,8 +14,8 @@ public class MeleeWeapon extends Weapon {
     }
 
     @Override
-    public boolean canUse() {
-        return true;
+    int getDamagePerStrike() {
+        return damageDoneToOpponentPerStrike;
     }
 
     @Override
