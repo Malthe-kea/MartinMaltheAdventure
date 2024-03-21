@@ -49,7 +49,7 @@ public class Player {
     public void eatFoodOrItem(String shortName) {
         Item item = findItemFromInventoryOrCurrentRoom(shortName);
         if (item == null) {
-            System.out.println("you found nothing to eat");
+            System.out.println("You found nothing to eat");
         } else if (item instanceof Food food) {
             removeItem(item);
             setPlayerHealth(food.getHealthPoints());
@@ -66,14 +66,14 @@ public class Player {
     public void equipWeapon(String shortName) {
         Item equippedWeapon = findItemFromInventory(shortName);
         if (equippedWeapon == null) {
-            System.out.println("no weapon found with the name :" + equippedWeapon);
+            System.out.println("No weapon found with the name:" + equippedWeapon);
         } else if (equippedWeapon instanceof Weapon) {
             currentWeapon = (Weapon) equippedWeapon;
             getCurrentRoom().removeItem(equippedWeapon);
             inventory.remove(equippedWeapon);
             System.out.println("You have equipped " + equippedWeapon);
         } else {
-            System.out.println("you cant equip " + " as a weapon");
+            System.out.println("You can't equip " + " as a weapon");
         }
     }
 
@@ -83,7 +83,7 @@ public class Player {
         this.enemyToAttack = (Enemy) enemyInRoom.get(0);
 
         if (enemyInRoom.isEmpty()) {
-            System.out.println("no enemies in this room to fight");
+            System.out.println("No enemies in this room to fight");
         } else if (this.enemyToAttack.getName().equalsIgnoreCase(this.enemyToAttack.shortName)) {
             Weapon equippedWeapon = getEquippedWeapon();
             if (equippedWeapon == null) {
@@ -107,7 +107,7 @@ public class Player {
         enemyToAttack.setHealthPoints(enemyNewHealthValue);
         if (enemyNewHealthValue <= 0) {
             enemyDied();
-            System.out.println("you have defeated " + enemyToAttack);
+            System.out.println("You have defeated " + enemyToAttack);
         } else {
             System.out.println("The enemy now has " + enemyNewHealthValue + " HP left.");
             playerHealth = enemyAttackPlayer();
@@ -123,7 +123,7 @@ public class Player {
         enemyToAttack.setHealthPoints(enemyNewHealthValue);
         if (enemyNewHealthValue <= 0) {
             enemyDied();
-            System.out.println("you have defeated " + enemyToAttack);
+            System.out.println("You have defeated " + enemyToAttack);
         } else {
             System.out.println("The enemy now has " + enemyNewHealthValue + " HP left.");
             System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
@@ -159,9 +159,9 @@ public class Player {
         if (item != null) {
             currentRoom.removeItem(item);
             addItemToInventory(item);
-            System.out.println("you took the: " + item.getShortName() + ".");
+            System.out.println("You took the: " + item.getShortName() + ".");
         } else {
-            System.out.println("no item with the name : " + itemName + " exists.");
+            System.out.println("No item with the name: " + itemName + " exists.");
         }
     }
 
@@ -193,9 +193,9 @@ public class Player {
         if (item != null) {
             removeItem(item);
             currentRoom.addItemToCurrentRoom(item);
-            System.out.println("the item " + item + " has been removed");
+            System.out.println("The item " + item + " has been removed");
         } else {
-            System.out.println("no item in inventory with the name :" + shortName + ".");
+            System.out.println("No item in inventory with the name:" + shortName + ".");
         }
 
     }
@@ -225,9 +225,9 @@ public class Player {
         enemyInRoom = currentRoom.getEnemiesInRoom();
         String enemyMessage;
         if (enemyInRoom.isEmpty()) {
-            enemyMessage = "no enemies in this room to fight";
+            enemyMessage = "No enemies in this room to fight";
         } else {
-            enemyMessage = "In the roome you encounter " + enemyInRoom + ".";
+            enemyMessage = "In the room you encounter " + enemyInRoom + ".";
         }
         return enemyMessage;
     }
@@ -237,7 +237,7 @@ public class Player {
         roomInfo.append("You are in: ").append(currentRoom.getRoomName());
         roomInfo.append("\n").append(currentRoom.getRoomDescription());
         roomInfo.append("\n");
-        roomInfo.append("You find the following items in the room: ");
+        roomInfo.append("You found the following items in the room: ");
         roomInfo.append("\n").append(currentRoom.getItemsInCurrentRoom());
         roomInfo.append("\n").append(getEnemiesInCurrentRoom());
         return roomInfo.toString();

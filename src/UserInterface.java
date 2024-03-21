@@ -147,6 +147,7 @@ public class UserInterface {
         System.out.println();
         System.out.println("As you move around in the rooms, you will find things to eat, items to take and weapons to equip.");
         System.out.println("But beware: Not all edible stuff is good for your health, an not all weapons are good!");
+        System.out.println();
         System.out.println("Last line of help will come here: 'When you are in Romania, go against the heat;");
         System.out.println("First, when you cant go any further with dry feet, you shall seek a great bird and cross the black salt'");
         System.out.println();
