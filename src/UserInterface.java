@@ -46,6 +46,7 @@ public class UserInterface {
                 case "attack", "a" -> {
                     String enemyToAttack = commandParameter;
                     controller.getGamePlayer().attack(enemyToAttack);
+
                 }
                 case "equip" -> {
                     controller.getGamePlayer().equipWeapon(commandParameter);

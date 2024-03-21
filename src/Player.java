@@ -78,49 +78,47 @@ public class Player {
 
     public void attack(String enemyShortName) {
         String enemyToAttack = enemyShortName;
-        ArrayList<Enemy> enemyInRoom = currentRoom.getEnemiesInRoom();
-
+        enemyInRoom = currentRoom.getEnemiesInRoom();
+        enemy = (Enemy) enemyInRoom.get(0);
         if (enemyInRoom.isEmpty()) {
             System.out.println("no enemies in this room to fight");
-        } else {
-            for (Enemy enemy : enemyInRoom) {
-                if (enemy.getName().equalsIgnoreCase(enemy.shortName)) {
-                    Weapon equippedWeapon = getEquippedWeapon();
-                    if (equippedWeapon == null) {
-                        System.out.println("You don't have a weapon equipped. You can chose from the following items " + getInventory());
-                    } else if (equippedWeapon instanceof MeleeWeapon) {
-                        equippedWeapon.useWeapon();
-                        int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
-                        enemy.setEnemyHealthPoints(enemyNewHealthValue);
-                        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+        } else if (enemy.getName().equalsIgnoreCase(enemy.shortName)) {
+            Weapon equippedWeapon = getEquippedWeapon();
+            if (equippedWeapon == null) {
+                System.out.println("You don't have a weapon equipped. You can chose from the following items " + getInventory());
+            } else if (equippedWeapon instanceof MeleeWeapon) {
+                equippedWeapon.useWeapon();
+                int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
+                enemy.setEnemyHealthPoints(enemyNewHealthValue);
+                System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
 
-                        //TODO skal der indføres en metode her i stedet for? Jeg får exception-fejl.
-                        if (enemy.getEnemyHealthPoints() >= 0) {
-                            enemyInRoom.remove(enemy);
-                            System.out.println("you have defeated " + enemy);
-                        } else {
-                            System.out.println("The enemy now has " + enemyNewHealthValue);
-                        }
-                    } else if (equippedWeapon.getUsesLeft() == 0) {
-                        System.out.println("You are out of ammo");
-                    } else if (equippedWeapon instanceof RangedWeapon) {
-                        equippedWeapon.useWeapon();
-                        int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
-                        enemy.setEnemyHealthPoints(enemyNewHealthValue);
-                        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-                        //TODO skal der indføres en metode her i stedet for? Jeg får exception-fejl.
-                        if (enemy.getEnemyHealthPoints() >= 0) {
-                            enemyInRoom.remove(enemy);
-                            System.out.println("you have defeated " + enemy);
-                        } else {
-                            System.out.println("The enemy now has " + enemyNewHealthValue);
-                            System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
-                        }
-                    }
+                //TODO skal der indføres en metode her i stedet for? Jeg får exception-fejl.
+                if (enemyNewHealthValue <= 0) {
+                    enemyInRoom.remove(enemy);
+                    System.out.println("you have defeated " + enemy);
+                } else {
+                    System.out.println("The enemy now has " + enemyNewHealthValue);
+                }
+            } else if (equippedWeapon.getUsesLeft() == 0) {
+                System.out.println("You are out of ammo");
+            } else if (equippedWeapon instanceof RangedWeapon) {
+                equippedWeapon.useWeapon();
+                int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
+                enemy.setEnemyHealthPoints(enemyNewHealthValue);
+                System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+                //TODO skal få fjende til at slå tilbage
+                if (enemyNewHealthValue <= 0) {
+                    enemyInRoom.remove(enemy);
+                    System.out.println("you have defeated " + enemy);
+                } else {
+                    System.out.println("The enemy now has " + enemyNewHealthValue);
+                    System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
                 }
             }
         }
     }
+
+
 
 //    public boolean isEnemyDead () {
 //        if (enemy.getEnemyHealthPoints() >= 0) {
@@ -130,115 +128,115 @@ public class Player {
 //        } return false;
 //    }
 
-    public void takeItemAndAddToInventory(String itemName) {
-        Item item = currentRoom.searchForItemsInCurrentRoom(itemName);
-        if (item != null) {
-            currentRoom.removeItem(item);
-            addItemToInventory(item);
-            System.out.println("you took the: " + item.getShortName() + ".");
-        } else {
-            System.out.println("no item with the name : " + itemName + " exists.");
+public void takeItemAndAddToInventory(String itemName) {
+    Item item = currentRoom.searchForItemsInCurrentRoom(itemName);
+    if (item != null) {
+        currentRoom.removeItem(item);
+        addItemToInventory(item);
+        System.out.println("you took the: " + item.getShortName() + ".");
+    } else {
+        System.out.println("no item with the name : " + itemName + " exists.");
+    }
+}
+
+public Item findItemFromInventoryOrCurrentRoom(String shortName) {
+    for (Item i : inventory) {
+        if (i.getShortName().equals(shortName)) {
+            return i;
         }
     }
-
-    public Item findItemFromInventoryOrCurrentRoom(String shortName) {
-        for (Item i : inventory) {
-            if (i.getShortName().equals(shortName)) {
-                return i;
-            }
-        }
-        for (Item i : currentRoom.getItemsInCurrentRoom()) {
-            if (i.getShortName().equals(shortName)) {
-                return i;
-            }
-        }
-        return null;
-    }
-
-    public Item findItemFromInventory(String shortName) {
-        for (Item i : inventory) {
-            if (i.getShortName().equals(shortName)) {
-                return i;
-            }
-        }
-        return null;
-    }
-
-    //removes item from inventory
-    public void dropItemInCurrentRoom(String shortName) {
-        System.out.println("Write the name of the item you want to drop");
-        Item item = findItemFromInventoryOrCurrentRoom(shortName);
-        if (item != null) {
-            removeItem(item);
-            currentRoom.addItemToCurrentRoom(item);
-            System.out.println("the item " + item + " has been removed");
-        } else {
-            System.out.println("no item in inventory with the name :" + shortName + ".");
-        }
-
-    }
-
-    public void addItemToInventory(Item item) {
-        inventory.add(item);
-    }
-
-    public void removeItem(Item item) {
-        inventory.remove(item);
-    }
-
-    public ArrayList<Item> getInventory() {
-        return inventory;
-    }
-
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
-    }
-
-    public Weapon getEquippedWeapon() {
-        return currentWeapon;
-    }
-
-    public String look() {
-        StringBuilder roomInfo = new StringBuilder();
-        roomInfo.append("You are in: ").append(currentRoom.getRoomName());
-        roomInfo.append("\n").append(currentRoom.getRoomDescription());
-        roomInfo.append("\n");
-        roomInfo.append("You find the following items in the room: ");
-        roomInfo.append("\n").append(currentRoom.getItemsInCurrentRoom());
-        roomInfo.append("\n").append(checkForEnemiesInCurrentRoom());
-        return roomInfo.toString();
-    }
-
-    //TODO lav for each loop.
-    public Enemy checkForEnemiesInCurrentRoom() {
-        ArrayList<Enemy> enemyInRoom = currentRoom.getEnemiesInRoom();
-        if (enemyInRoom.isEmpty()) {
-            System.out.println("no enemies in this room to fight");
-        } else {
-            System.out.println("In the roome you encounter " + enemyInRoom);
-        }
-        return null;
-    }
-
-    //Overført fra "Adventure del 2 review" PDF slide 15
-    public boolean move(String direction) {
-        Room desiredRoom = switch (direction) {
-            case "north" -> currentRoom.getNorth();
-            case "south" -> currentRoom.getSouth();
-            case "east" -> currentRoom.getEast();
-            case "west" -> currentRoom.getWest();
-            default -> null;
-        };
-
-        if (desiredRoom != null) {
-            currentRoom = desiredRoom;
-            return true;
-        } else {
-            return false;
+    for (Item i : currentRoom.getItemsInCurrentRoom()) {
+        if (i.getShortName().equals(shortName)) {
+            return i;
         }
     }
+    return null;
+}
+
+public Item findItemFromInventory(String shortName) {
+    for (Item i : inventory) {
+        if (i.getShortName().equals(shortName)) {
+            return i;
+        }
+    }
+    return null;
+}
+
+//removes item from inventory
+public void dropItemInCurrentRoom(String shortName) {
+    System.out.println("Write the name of the item you want to drop");
+    Item item = findItemFromInventoryOrCurrentRoom(shortName);
+    if (item != null) {
+        removeItem(item);
+        currentRoom.addItemToCurrentRoom(item);
+        System.out.println("the item " + item + " has been removed");
+    } else {
+        System.out.println("no item in inventory with the name :" + shortName + ".");
+    }
+
+}
+
+public void addItemToInventory(Item item) {
+    inventory.add(item);
+}
+
+public void removeItem(Item item) {
+    inventory.remove(item);
+}
+
+public ArrayList<Item> getInventory() {
+    return inventory;
+}
+
+public Room getCurrentRoom() {
+    return currentRoom;
+}
+
+public void setCurrentRoom(Room currentRoom) {
+    this.currentRoom = currentRoom;
+}
+
+public Weapon getEquippedWeapon() {
+    return currentWeapon;
+}
+
+public String look() {
+    StringBuilder roomInfo = new StringBuilder();
+    roomInfo.append("You are in: ").append(currentRoom.getRoomName());
+    roomInfo.append("\n").append(currentRoom.getRoomDescription());
+    roomInfo.append("\n");
+    roomInfo.append("You find the following items in the room: ");
+    roomInfo.append("\n").append(currentRoom.getItemsInCurrentRoom());
+    roomInfo.append("\n").append(checkForEnemiesInCurrentRoom());
+    return roomInfo.toString();
+}
+
+//TODO lav for each loop.
+public Enemy checkForEnemiesInCurrentRoom() {
+    ArrayList<Enemy> enemyInRoom = currentRoom.getEnemiesInRoom();
+    if (enemyInRoom.isEmpty()) {
+        System.out.println("no enemies in this room to fight");
+    } else {
+        System.out.println("In the roome you encounter " + enemyInRoom);
+    }
+    return null;
+}
+
+//Overført fra "Adventure del 2 review" PDF slide 15
+public boolean move(String direction) {
+    Room desiredRoom = switch (direction) {
+        case "north" -> currentRoom.getNorth();
+        case "south" -> currentRoom.getSouth();
+        case "east" -> currentRoom.getEast();
+        case "west" -> currentRoom.getWest();
+        default -> null;
+    };
+
+    if (desiredRoom != null) {
+        currentRoom = desiredRoom;
+        return true;
+    } else {
+        return false;
+    }
+}
 }
