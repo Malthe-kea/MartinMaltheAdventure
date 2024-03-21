@@ -21,9 +21,10 @@ public class Enemy extends Item {
         return healthPoints;
     }
 
-    public int setEnemyHealthPoints(int enemyNewHealthPoints) {
-        return healthPoints;
+    public void setHealthPoints(int newHealthPoints) {
+        this.healthPoints = newHealthPoints;
     }
+
 
     public int getEnemyAttackPoints () {
         return attackPoints;

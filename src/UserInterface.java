@@ -25,7 +25,6 @@ public class UserInterface {
         userStartMenu();
 
         while (gameIsRunning) {
-            //controller.getGamePlayer().playerDied();
             command = "";
             commandParameter = "";
             command = processUserInput(scanner.next().toLowerCase());

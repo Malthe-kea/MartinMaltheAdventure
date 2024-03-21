@@ -34,17 +34,9 @@ public class Room {
         return null;
     }
 
-    public void deleteItemFromCurrentRoom(String shortName) {
-        Item item = lookForItemsInCurrentRoom(shortName);
-        itemList.remove(item);
-    }public void deleteEnemyFromCurrentRoom(Enemy shortName) {
-        Enemy enemyToRemove = null;
-        for (Enemy enemy : enemiesInRoom){
-            if (shortName.equals(enemy)){
-                enemy = enemyToRemove;
-            }
-        } enemiesInRoom.remove(enemyToRemove);
 
+    public void deleteEnemyFromCurrentRoom(Enemy shortName) {
+        enemiesInRoom.removeIf(shortName::equals);
     }
 
     public Item searchForItemsInCurrentRoom(String shortName) {

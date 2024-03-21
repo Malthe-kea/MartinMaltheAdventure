@@ -7,10 +7,8 @@ public class Player {
     private ArrayList<Item> inventory;
     private int playerHealth = 0;
     private Weapon currentWeapon;
-    private Weapon weapon;
-    private AdventureController controller;
     private ArrayList enemyInRoom;
-    private Enemy enemy;
+    private Enemy enemyToAttack;
 
 
     //CONSTRUCTOR
@@ -79,10 +77,11 @@ public class Player {
     public void attack(String enemyShortName) {
         String enemyToAttack = enemyShortName;
         enemyInRoom = currentRoom.getEnemiesInRoom();
-        enemy = (Enemy) enemyInRoom.get(0);
+        this.enemyToAttack = (Enemy) enemyInRoom.get(0);
+
         if (enemyInRoom.isEmpty()) {
             System.out.println("no enemies in this room to fight");
-        } else if (enemy.getName().equalsIgnoreCase(enemy.shortName)) {
+        } else if (this.enemyToAttack.getName().equalsIgnoreCase(this.enemyToAttack.shortName)) {
             Weapon equippedWeapon = getEquippedWeapon();
             if (equippedWeapon == null) {
                 System.out.println("You don't have a weapon equipped. You can chose from the following items " + getInventory());
@@ -98,16 +97,31 @@ public class Player {
         }
     }
 
-
-    //TODO lav metoder til enemy attack player og omvendt.
+    public void meleeWeaponAttackSequence() {
+        Weapon equippedWeapon = getEquippedWeapon();
+        int enemyNewHealthValue = (enemyToAttack.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
+        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+        enemyToAttack.setHealthPoints(enemyNewHealthValue);
+        if (enemyNewHealthValue <= 0) {
+            enemyDied();
+            System.out.println("you have defeated " + enemyToAttack);
+        } else {
+            System.out.println("The enemy now has " + enemyNewHealthValue);
+            System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
+            playerHealth = enemyAttackPlayer();
+            if (playerHealth <= 0) {
+                playerDied();
+            }
+        }
+    }
     public int enemyAttackPlayer() {
         enemyInRoom = currentRoom.getEnemiesInRoom();
-        enemy = (Enemy) enemyInRoom.get(0);
-        if (enemy.getEnemyHealthPoints() <= 0) {
+        enemyToAttack = (Enemy) enemyInRoom.get(0);
+        if (enemyToAttack.getEnemyHealthPoints() <= 0) {
             enemyDied();
         } else {
             int playerNewHealth = (playerHealth - ((Enemy) enemyInRoom.get(0)).getEnemyAttackPoints());
-            System.out.println(enemy + "attacked you with " + enemy.getEnemyAttackPoints());
+            System.out.println(enemyToAttack + " attacked you with " + enemyToAttack.getEnemyAttackPoints());
             System.out.println("Your current HP is now " + playerNewHealth);
             return playerNewHealth;
         }
@@ -124,37 +138,20 @@ public class Player {
 
     public void rangedWeaponAttackSeqeuence() {
         Weapon equippedWeapon = getEquippedWeapon();
-        equippedWeapon.useWeapon();
-        int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
+        int enemyNewHealthValue = (enemyToAttack.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
         System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-        enemy.setEnemyHealthPoints(enemyNewHealthValue);
+        enemyToAttack.setHealthPoints(enemyNewHealthValue);
         if (enemyNewHealthValue <= 0) {
             enemyDied();
-            System.out.println("you have defeated " + enemy);
+            System.out.println("you have defeated " + enemyToAttack);
         } else {
             System.out.println("The enemy now has " + enemyNewHealthValue);
             System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
-            playerHealth = enemyAttackPlayer() - playerHealth;
-            playerDied();
+            playerHealth = enemyAttackPlayer();
+            if (playerHealth <= 0) {
+                playerDied();
+            }
         }
-
-    }
-
-    public void meleeWeaponAttackSequence() {
-        Weapon equippedWeapon = getEquippedWeapon();
-        int enemyNewHealthValue = (enemy.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
-        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
-        enemy.setEnemyHealthPoints(enemyNewHealthValue);
-        if (enemyNewHealthValue <= 0) {
-            enemyDied();
-            System.out.println("you have defeated " + enemy);
-        } else {
-            System.out.println("The enemy now has " + enemyNewHealthValue);
-            System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
-            playerHealth = enemyAttackPlayer() - playerHealth;
-            playerDied();
-        }
-
     }
 
 
@@ -222,9 +219,6 @@ public class Player {
         return currentRoom;
     }
 
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
-    }
 
     public Weapon getEquippedWeapon() {
         return currentWeapon;
