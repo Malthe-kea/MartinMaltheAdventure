@@ -1,6 +1,7 @@
 public class Map {
     //Attributes
     private Room firstRoom;
+    private Room lastRoom;
 
     //Constructor
     public Map() {
@@ -19,6 +20,7 @@ public class Map {
         Room room8 = new Room("Dæmonisk Domstol", "Lavafloder omgiver en ruineret domstol, hvor dæmoniske væsner holder hof og udfælder skæbnesvangre domme under en flammende himmel.");
         Room room9 = new Room("Englernes Have", "En skyfri himmel bader engle i gyldent lys, mens blomsterbede stråler i alskens farver og en bæk risler mellem ædle sten.");
         firstRoom = room1;
+        lastRoom = room5;
 
 
         //ROOM 1
@@ -84,6 +86,10 @@ public class Map {
 
     public Room getFirstRoom() {
         return firstRoom;
+    }
+
+    public Room getLastRoom () {
+        return lastRoom;
     }
 
     public void setEnemyInRoom () {

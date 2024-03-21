@@ -127,7 +127,7 @@ public class UserInterface {
             System.out.println(controller.getGameMap().getFirstRoom().getItemsInCurrentRoom());
             System.out.println();
         System.out.println("In the distance you see your first encounter " + controller.getGameMap().getFirstRoom().getEnemiesInRoom()+ " as a voice whisperes ");
-            System.out.println("'Let teh games begin lol'");
+            System.out.println("your goal is to find the " + controller.getGameMap().getLastRoom().getEnemiesInRoom());
         }
 
     public void userHelp() {
