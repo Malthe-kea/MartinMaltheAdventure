@@ -18,5 +18,6 @@ public class MeleeWeapon extends Weapon {
         return 100000;
     }
 
-    void useWeapon (){    }
+    void useWeapon() {
+    }
 }

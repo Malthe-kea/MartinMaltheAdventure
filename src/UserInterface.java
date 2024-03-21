@@ -53,28 +53,28 @@ public class UserInterface {
                 }
                 case "go north", "north", "n" -> {
                     if (controller.getGamePlayer().move("north")) {
-                        System.out.println("Going north");
+                        System.out.println("You are moving north");
                     } else {
                         System.out.println("You can't go this way");
                     }
                 }
                 case "go south", "south", "s" -> {
                     if (controller.getGamePlayer().move("south")) {
-                        System.out.println("Going south");
+                        System.out.println("You are moving south");
                     } else {
                         System.out.println("You can't go this way");
                     }
                 }
                 case "go east", "east", "e" -> {
                     if (controller.getGamePlayer().move("east")) {
-                        System.out.println("Going east");
+                        System.out.println("You are moving east");
                     } else {
                         System.out.println("You can't go this way");
                     }
                 }
                 case "go west", "west", "w" -> {
                     if (controller.getGamePlayer().move("west")) {
-                        System.out.println("Going west");
+                        System.out.println("You are moving west");
                     } else {
                         System.out.println("You can't go this way");
                     }
@@ -116,7 +116,7 @@ public class UserInterface {
         System.out.println("Write 'Go east' to go east");
         System.out.println("Write 'Look' to go look around you");
         System.out.println("Write 'Help' to ask for help");
-        System.out.println("Write attack and then monster, to attack a monster");
+        System.out.println("Write 'Attack' and which monster you wanna attack, to attack a monster");
     }
 
     public void userHelp() {
