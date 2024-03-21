@@ -29,7 +29,7 @@ public class Map {
         room1.addItemToCurrentRoom(new Food("egekilde", "Danskvand med citrus", 20));
         room1.addItemToCurrentRoom(new MeleeWeapon("kniv", "Den vildeste kniv i byen", 10));
         room1.addItemToCurrentRoom(new RangedWeapon("vandpistol", "Den sløveste vandpistol øst for Randers", 2, 15));
-        room1.addEnemyToCurrentRoom(new Enemy("Diablo", "Djævlen hamselv", 20, new MeleeWeapon("Trefork", "Lucifers",10)));
+        room1.addEnemyToCurrentRoom(new Enemy("Diablo", "Djævlen hamselv", 20, 10, new MeleeWeapon("Trefork", "Lucifers",10)));
 
         //ROOM 2
         room2.setWest(room1);
@@ -37,14 +37,14 @@ public class Map {
         room2.addItemToCurrentRoom(new Food("muslibar", "Muslibar med tranebær, citron og hasselnødder", 5));
         room2.addItemToCurrentRoom(new Food("bolle", "en bolle med ost og smør", 20));
         room2.addItemToCurrentRoom(new RangedWeapon("dessertEagle", "Den tungeste dreng i byen", 25, 10));
-        room2.addEnemyToCurrentRoom(new Enemy("rasmuspaludan", "Med en koran og lighter i hånden", 50, new MeleeWeapon("Lighter", "Den billige fra kiosken", 5)));
+        room2.addEnemyToCurrentRoom(new Enemy("rasmuspaludan", "Med en koran og lighter i hånden", 50, 20, new MeleeWeapon("Lighter", "Den billige fra kiosken", 5)));
 
         //ROOM 3
         room3.setWest(room2);
         room3.setSouth(room6);
         room3.addItemToCurrentRoom(new Food("rugbrød", "Rugbrød med leverpostej, rødbedder og peber", 10));
         room3.addItemToCurrentRoom(new Food("agurk", "Den saftigste agurk i byen", 5));
-        room3.addEnemyToCurrentRoom(new Enemy("karlof", "Den største bandit i byen", 60, new MeleeWeapon("Tigersabel", "En skarp fætter", 10)));
+        room3.addEnemyToCurrentRoom(new Enemy("karlof", "Den største bandit i byen", 60, 20, new MeleeWeapon("Tigersabel", "En skarp fætter", 10)));
 
         //ROOM 4
         room4.setNorth(room1);
@@ -56,7 +56,7 @@ public class Map {
         //ROOM 5
         room5.setSouth(room8);
         room5.addItemToCurrentRoom(new Food("brikjuice", "Appelsinjuive", 15));
-        room4.addEnemyToCurrentRoom(new Enemy("BigBoss", "Last man standing", 100, new RangedWeapon("Magic Wand", "Tryllestøv bliver sendt mod dig", 35, 20)));
+        room4.addEnemyToCurrentRoom(new Enemy("BigBoss", "Last man standing", 100, 25, new RangedWeapon("Magic Wand", "Tryllestøv bliver sendt mod dig", 35, 20)));
 
         //ROOM 6
         room6.setNorth(room3);
@@ -69,7 +69,7 @@ public class Map {
         room7.setEast(room8);
         room7.addItemToCurrentRoom(new Food("insekter", "Et glas insekter spicet op med BBQ", 10));
         room7.addItemToCurrentRoom(new Food("kaffe", "En kop varm kaffe af mærket Merrild", 0));
-        room7.addEnemyToCurrentRoom(new Enemy("Matematiklærer", "En matematiklærer fra folkeskolen", 50, new RangedWeapon("Matematikbøger", "10 års pensum af matematikbøger bliver kastet", 5, 10)));
+        room7.addEnemyToCurrentRoom(new Enemy("Matematiklærer", "En matematiklærer fra folkeskolen", 50, 15, new RangedWeapon("Matematikbøger", "10 års pensum af matematikbøger bliver kastet", 5, 10)));
 
         //ROOM 8
         room8.setWest(room7);
@@ -77,14 +77,14 @@ public class Map {
         room8.setEast(room9);
         room8.addItemToCurrentRoom(new Food("energidrik", "Den helt billige sukkerfri fra Lidl", 5));
         room8.addItemToCurrentRoom(new Food("flaske vand", "En halvtom,lun flaske kildevand", 5));
-        room8.addItemToCurrentRoom(new Enemy("Svigermor", "Hun er på besøg", 40, new MeleeWeapon("Emma Gad bog", "Hardback", 10)));
+        room8.addItemToCurrentRoom(new Enemy("Svigermor", "Hun er på besøg", 40,10, new MeleeWeapon("Emma Gad bog", "Hardback", 10)));
 
         //ROOM 9
         room9.setWest(room8);
         room9.setNorth(room6);
         room9.addItemToCurrentRoom(new Food("majs", "En bøtte dåsemajs der udløb for 5 år siden", -10));
         room9.addItemToCurrentRoom(new Food("glögg", "En flaske alkoholfri Glögg fra Remam 1000", 3));
-        room9.addEnemyToCurrentRoom(new Enemy("Ged", "En sur ged", 25, new MeleeWeapon("Dåse", "En halvspist dåse", 2)));
+        room9.addEnemyToCurrentRoom(new Enemy("Ged", "En sur ged", 25, 10, new MeleeWeapon("Dåse", "En halvspist dåse", 2)));
     }
 
     public Room getFirstRoom() {
