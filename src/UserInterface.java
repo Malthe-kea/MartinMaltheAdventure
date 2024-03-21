@@ -21,7 +21,7 @@ public class UserInterface {
         System.out.println("*                               *");
         System.out.println("*      THE GREAT ADVENTURE      *");
         System.out.println("*                               *");
-        System.out.println("*******************************\n");
+        System.out.println("*********************************\n");
         userStartMenu();
 
         while (gameIsRunning) {

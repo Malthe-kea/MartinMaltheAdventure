@@ -4,8 +4,6 @@ public class Enemy extends Item {
     private int healthPoints;
     private String name;
 
-// Indhent et meleeWeapon fra klassen
-
     public Enemy(String shortName, String longName, int healthPoints, Weapon weapon) {
         super(shortName, longName);
         this.healthPoints = healthPoints;
