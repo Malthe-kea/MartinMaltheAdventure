@@ -5,7 +5,6 @@ public class Enemy extends Item {
     private int attackPoints;
     private Weapon weapon;
 
-
     public Enemy(String shortName, String longName, int healthPoints, int attackPoints, Weapon weapon) {
         super(shortName, longName);
         this.healthPoints = healthPoints;
@@ -24,7 +23,6 @@ public class Enemy extends Item {
     public void setHealthPoints(int newHealthPoints) {
         this.healthPoints = newHealthPoints;
     }
-
 
     public int getEnemyAttackPoints () {
         return attackPoints;

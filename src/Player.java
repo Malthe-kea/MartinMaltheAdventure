@@ -5,11 +5,10 @@ public class Player {
     //Attributes
     private Room currentRoom;
     private ArrayList<Item> inventory;
-    private int playerHealth ;
+    private int playerHealth;
     private Weapon currentWeapon;
     private ArrayList enemyInRoom;
     private Enemy enemyToAttack;
-
 
     //CONSTRUCTOR
     public Player(Room currentRoom) {
@@ -17,7 +16,6 @@ public class Player {
         this.inventory = new ArrayList<>();
         setPlayerHealth(100);
     }
-
 
     public void playerDied() {
         if (playerHealth <= 0) {
@@ -37,6 +35,7 @@ public class Player {
     public void setGamePlayerHealth(int health) {
         this.playerHealth = health;
     }
+
     public void setPlayerHealth(int changeInHealth) {
         playerHealth += changeInHealth;
         if (playerHealth <= 0) { // health range er sat fra 0-100
@@ -62,9 +61,8 @@ public class Player {
         } else System.out.println(item + " is not edible");
     }
 
-
     public void equipWeapon(String shortName) {
-        Item equippedWeapon = findItemFromInventory(shortName);
+        Item equippedWeapon = findItemFromInventoryOrCurrentRoom(shortName);
         if (equippedWeapon == null) {
             System.out.println("No weapon found with the name:" + equippedWeapon);
         } else if (equippedWeapon instanceof Weapon) {
@@ -108,6 +106,7 @@ public class Player {
         if (enemyNewHealthValue <= 0) {
             enemyDied();
             System.out.println("You have defeated " + enemyToAttack);
+            System.out.println("They dropped a" + enemyToAttack.getEnemyWeapon() + " on the floor");
         } else {
             System.out.println("The enemy now has " + enemyNewHealthValue + " HP left.");
             playerHealth = enemyAttackPlayer();
@@ -116,6 +115,7 @@ public class Player {
             }
         }
     }
+
     public void rangedWeaponAttackSeqeuence() {
         Weapon equippedWeapon = getEquippedWeapon();
         int enemyNewHealthValue = (enemyToAttack.getEnemyHealthPoints() - equippedWeapon.getDamagePerStrike());
@@ -124,6 +124,7 @@ public class Player {
         if (enemyNewHealthValue <= 0) {
             enemyDied();
             System.out.println("You have defeated " + enemyToAttack);
+            System.out.println("They dropped a" + enemyToAttack.getEnemyWeapon() + " on the floor");
         } else {
             System.out.println("The enemy now has " + enemyNewHealthValue + " HP left.");
             System.out.println("You have " + equippedWeapon.getUsesLeft() + " ammo left");
@@ -133,6 +134,7 @@ public class Player {
             }
         }
     }
+
     public int enemyAttackPlayer() {
         enemyInRoom = currentRoom.getEnemiesInRoom();
         enemyToAttack = (Enemy) enemyInRoom.get(0);
@@ -154,6 +156,7 @@ public class Player {
         currentRoom.deleteEnemyFromCurrentRoom(enemy);
 
     }
+
     public void takeItemAndAddToInventory(String itemName) {
         Item item = currentRoom.searchForItemsInCurrentRoom(itemName);
         if (item != null) {
@@ -179,14 +182,6 @@ public class Player {
         return null;
     }
 
-    public Item findItemFromInventory(String shortName) {
-        for (Item i : inventory) {
-            if (i.getShortName().equals(shortName)) {
-                return i;
-            }
-        }
-        return null;
-    }
 
     public void dropItemInCurrentRoom(String shortName) {
         Item item = findItemFromInventoryOrCurrentRoom(shortName);
@@ -215,7 +210,6 @@ public class Player {
     public Room getCurrentRoom() {
         return currentRoom;
     }
-
 
     public Weapon getEquippedWeapon() {
         return currentWeapon;
