@@ -23,7 +23,7 @@ public class Map {
         Room room6 = new Room("Entering the Animatrix", "Matrix wasn't a stand-alone thing, and neither will it be here. In front of you stands a great guy.\nA muscular guy, black shades, tight suit and a long coat...\n");
         Room room7 = new Room("The Dining Room of Horror", "You arrive at The Dinning Room of Horror. A quick look around gives the ick, vomit in your mouth and a bad breath.\nEmpty meatsuits, heads and blood enough to take a swim in is covering the floor...\n");
         Room room8 = new Room("The Demonic Court", "The castle usede to be an old court building 200 something years ago. Demons have risen through the cracked floors,\nand demons have taken over the court, the chairs and rulling. Beware of the encounters in the room!\n");
-        Room room9 = new Room("", "");
+        Room room9 = new Room("The Chapel", "Every large castle need a holy place. This one has the mightiest one with the greatest Messias known to mankind.\nAs you hear the organ plating, a shiny light brighten your eyes and you see a silhouette far away...\n");
         firstRoom = room1;
         lastRoom = room5;
 
@@ -90,6 +90,7 @@ public class Map {
         //ROOM 9
         room9.setWest(room8);
         room9.setNorth(room6);
+        room9.addItemToCurrentRoom(new Food("altarbread", "No wine, so its a bit dry", 20));
         room9.addEnemyToCurrentRoom(new Enemy("Agent-Smith", "An ominous looking agent with nothing good in mind", 75, 10, new MeleeWeapon(" ", "", 0)));
     }
 
