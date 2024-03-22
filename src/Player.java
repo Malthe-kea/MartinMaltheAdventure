@@ -79,7 +79,6 @@ public class Player {
         String enemyToAttack = enemyShortName;
         enemyInRoom = currentRoom.getEnemiesInRoom();
         this.enemyToAttack = (Enemy) enemyInRoom.get(0);
-
         if (enemyInRoom.isEmpty()) {
             System.out.println("No enemies in this room to fight");
         } else if (this.enemyToAttack.getName().equalsIgnoreCase(this.enemyToAttack.shortName)) {

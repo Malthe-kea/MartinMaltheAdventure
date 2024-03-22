@@ -36,7 +36,7 @@ public class Map {
         room1.addItemToCurrentRoom(new Food("sparklingwater", "With lime and citrus", 20));
         room1.addItemToCurrentRoom(new MeleeWeapon("knife", "Crocodille Dundee would be jalous", 10));
         room1.addItemToCurrentRoom(new RangedWeapon("watergun", "the cheap on from BR", 2, 15));
-        room1.addEnemyToCurrentRoom(new Enemy("Diablo", "Spawn of satan", 20, 10, new MeleeWeapon("Trefork", "Lucifers",10)));
+        room1.addEnemyToCurrentRoom(new Enemy("Diablo", "Spawn of satan", 20, 49, new MeleeWeapon("Trefork", "Lucifers",10)));
 
         //ROOM 2
         room2.setWest(room1);

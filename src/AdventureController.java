@@ -9,7 +9,6 @@ public class AdventureController {
         gamePlayer = new Player(gameMap.getFirstRoom());
     }
 
-    //Getters bliver lavet her
     public Player getGamePlayer() {
         return gamePlayer;
     }
