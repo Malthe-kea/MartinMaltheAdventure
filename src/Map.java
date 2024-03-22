@@ -1,7 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Map {
     //Attributes
     private Room firstRoom;
     private Room lastRoom;
+    private List<Item> items = new ArrayList<>();
+    private List<Enemy> enemies = new ArrayList<>();
 
     //Constructor
     public Map() {
@@ -95,6 +100,8 @@ public class Map {
     public Room getLastRoom () {
         return lastRoom;
     }
+
+
     public String finalItemForTheFinalBoss() {
         return "The Divine Holy Grail stands as the quintessence of celestial splendor, an ethereal vessel imbued with the luminescence of the heavens. " + " \n" +
                 "It is a paragon of sanctity, a chalice of unparalleled reverence that radiates with a divine aura, shimmering with the purest of lights. " +

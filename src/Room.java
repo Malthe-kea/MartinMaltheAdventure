@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
     //attributes
@@ -6,6 +7,7 @@ public class Room {
     private String roomDescription;
     private Room north, east, west, south;
     private ArrayList<Item> itemList = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Enemy> enemiesInRoom = new ArrayList<>();
 
 
@@ -44,6 +46,7 @@ public class Room {
     public ArrayList<Item> getItemsInCurrentRoom() {
         return itemList;
     }
+
     public ArrayList<Enemy> getEnemiesInRoom(){
         return enemiesInRoom;
     }

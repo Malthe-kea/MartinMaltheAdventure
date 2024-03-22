@@ -14,22 +14,8 @@ public class AdventureController {
         return gamePlayer;
     }
 
-
     public Map getGameMap() {
         return gameMap;
-    }
-
-    //Setters bliver lavet her:
-    public void setGameMap(Map gameMap) {
-        this.gameMap = gameMap;
-    }
-
-    public void setGamePlayer(Player gamePlayer) {
-        this.gamePlayer = gamePlayer;
-    }
-
-    public void showPlayerInventory() {
-        gamePlayer.getInventory();
     }
 
     public String look() {
@@ -37,13 +23,4 @@ public class AdventureController {
     }
 
 
-    //Weapon methods for use in subclasses -
-//    public void attack() {
-//        getGamePlayer().getCurrentWeapon().getDamageDoneToOpponentPerStrike();
-//        if (getGamePlayer().getCurrentWeapon() instanceof RangedWeapon) {
-//            ((RangedWeapon) getGamePlayer().getCurrentWeapon()).setRemainingUses(getGamePlayer().getCurrentWeapon().getAmmo() - 1);
-//        } else {
-//            System.out.println("You dont have a weapon");
-//        }
-//    }
 }

@@ -2,7 +2,6 @@ public class Item {
     String shortName;
     private String longName;
 
-
     public Item(String shortName, String longName) {
         this.longName = longName;
         this.shortName = shortName;

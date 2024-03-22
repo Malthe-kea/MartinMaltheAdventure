@@ -8,9 +8,6 @@ public abstract class Weapon extends Item {
         super(shortName, longName); //calls item constructor
         this.damagePerStrike = damagePerStrike;
     }
-
-
-
     abstract void useWeapon();
 
     abstract int getDamagePerStrike();
