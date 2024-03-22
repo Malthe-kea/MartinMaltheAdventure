@@ -139,7 +139,7 @@ public class UserInterface {
         System.out.println();
         System.out.println("'Your voice is for no use in this world.");
         System.out.println("From now on, you are only allowed to write the following commands on me");
-        System.out.println("Take | Drop | Go (N,S,E,W)| Inventory | Help | Attack | Exit");
+        System.out.println("Take | Drop | Look | Eat |Go (N,S,E,W)| Inventory | Help | Attack | Exit");
         System.out.println("Any other commands will punish you");
         System.out.println();
         System.out.println("After adjusting your eyes, you find the following items on the floor: ");
