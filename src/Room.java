@@ -7,7 +7,6 @@ public class Room {
     private String roomDescription;
     private Room north, east, west, south;
     private ArrayList<Item> itemList = new ArrayList<>();
-    private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Enemy> enemiesInRoom = new ArrayList<>();
 
 
